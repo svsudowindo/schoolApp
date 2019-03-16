@@ -1,5 +1,38 @@
+@import './variables.scss';
 
 
-// Third pirty style files
-// Sidebar Scroll
+.threeD-pink-gradient {
+    box-shadow: 89px 19px 137px 18px $-pink-gradient-color;
+}
+// common images scss 
+img.rounded-circle {
+    height: 50px;
+    width: 50px;
+}
 
+// common button images
+button.pink-color,.pink-color:hover {
+    background-color: $-pink-color;
+    border-color: $-pink-color;
+    color: $-white-color;
+}
+
+button.pink-color:focus {
+    box-shadow: none;
+}
+
+input.form-control:focus {
+    box-shadow: none;
+    border-color: $-pink-color;
+}
+
+button.pink-color-label {
+    color: $-pink-color;
+    border-color: $-pink-color
+}
+
+button.pink-color-label:hover {
+    background-color: $-pink-color;
+    color: $-white-color;
+    border-color: $-pink-color;
+}

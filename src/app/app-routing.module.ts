@@ -14,7 +14,7 @@ import { CustomPreloaderService } from './shared/services/common/preloaders/cust
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   // add the paths which can be used before login
@@ -34,7 +34,7 @@ const routes: Routes = [
         path: 'registration',
         loadChildren: './views/auth-views/registration/registration.module#RegistrationModule',
         data: {
-          preload: true // use when you dont want lazy loading for a particular module
+          preload: false // use when you dont want lazy loading for a particular module
         }
       }
     ]

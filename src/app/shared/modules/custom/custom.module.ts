@@ -6,11 +6,13 @@ import { InputTrimModule } from 'ng2-trim-directive';
 import { ResponseMessageComponent } from '../../components/response-message/response-message.component';
 import { CommonModule } from '@angular/common';
 import { PopupModule } from '../../components/componentsAsService/popup/popup.module';
+import { SearchComponent } from '../../components/search/search.component';
 
 @NgModule({
   declarations: [
     TrimOnBlurDirective,
-    ResponseMessageComponent
+    ResponseMessageComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { PopupModule } from '../../components/componentsAsService/popup/popup.mo
     TrimOnBlurDirective,
     InputTrimModule,
     PopupModule,
-    ResponseMessageComponent
+    ResponseMessageComponent,
+    SearchComponent
   ]
 })
 export class CustomModule { }
