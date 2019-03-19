@@ -1,0 +1,15 @@
+<!-- cards -->
+<div class="d-flex flex-wrap m-l-50">
+  <ng-container *ngFor="let subject of subjects">
+    <div class="card subjects  m-t-25 " style="width: 18rem;">
+      <img class="rounded" height="100" width="100" src="../../../../assets/icons/profile.jpg" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-title">{{subject.subjectName}}</p>
+        <p class="card-text">{{subject.subjectDescription}}</p>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <!-- space -->
+    </div>
+  </ng-container>
+</div>

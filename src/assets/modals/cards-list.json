@@ -1,0 +1,32 @@
+[
+    {
+        "subjectName": "Mechanical Engineering",
+        "subjectCode": "MECH",
+        "subjectDescription": "Mechanical Engineering Description"
+    },
+    {
+        "subjectName": "MBA",
+        "subjectCode": "MBA",
+        "subjectDescription": "MBA Description"
+    },
+    {
+        "subjectName": "Accounts",
+        "subjectCode": "ACC",
+        "subjectDescription": "Accounts Description"
+    },
+    {
+        "subjectName": "Mechanical Engineering",
+        "subjectCode": "MECH",
+        "subjectDescription": "Mechanical Engineering Description"
+    },
+    {
+        "subjectName": "MBA",
+        "subjectCode": "MBA",
+        "subjectDescription": "MBA Description"
+    },
+    {
+        "subjectName": "Accounts",
+        "subjectCode": "ACC",
+        "subjectDescription": "Accounts Description"
+    }
+]

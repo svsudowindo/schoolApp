@@ -1,0 +1,26 @@
+.subjects {
+    box-shadow: 0px 0px 98px -25px rgba(0,0,0,0.75)
+}
+.subjects img.rounded {
+    position: relative;
+    left: -12px;
+    top: 8px;
+    height: 40px;
+    width: 40px;
+}
+
+.subjects .card-body {
+    margin-top: -51px;
+    margin-left: 30px;
+}
+
+.subjects .card-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.subjects .card-text {
+    font-size: 12px;
+    font-weight: 500;
+}
