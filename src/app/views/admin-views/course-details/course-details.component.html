@@ -12,4 +12,39 @@
       </p>
     </div>
   </div>
+  <div class="cover-photo">
+    <img src="../../../../assets/images/app/books.jpeg" />
+    <div class="year1 pointer" [ngClass]="isActiveYears.firstYear ? 'active' : 'inactive'" (click)="yearChange(YEARS_ENUM.FIRST)">
+      <div class="circle" [ngClass]="isActiveYears.firstYear ? 'inactive' : 'active'">
+        <span class="circle-label" [ngClass]="isActiveYears.firstYear ? 'active-color' : 'inactive-color'">1</span>
+        <p class="year-label" [ngClass]="isActiveYears.firstYear ? 'year-label-active-color' : 'year-label-inactive-color'">YEAR</p>
+      </div>
+    </div>
+    <div class="arrow-down1" *ngIf="isActiveYears.firstYear"></div>
+
+    <div class="year2 pointer" [ngClass]="isActiveYears.secondYear ? 'active' : 'inactive'" (click)="yearChange(YEARS_ENUM.SECOND)">
+      <div class="circle" [ngClass]="isActiveYears.secondYear ? 'inactive' : 'active'">
+        <span class="circle-label" [ngClass]="isActiveYears.secondYear ? 'active-color' : 'inactive-color'">2</span>
+        <p class="year-label" [ngClass]="isActiveYears.secondYear ? 'year-label-active-color' : 'year-label-inactive-color'">YEAR</p>
+      </div>
+    </div>
+    <div class="arrow-down2 pointer" *ngIf="isActiveYears.secondYear"></div>
+
+    <div class="year3 pointer" [ngClass]="isActiveYears.thirdYear ? 'active' : 'inactive'" (click)="yearChange(YEARS_ENUM.THIRD)">
+      <div class="circle" [ngClass]="isActiveYears.thirdYear ? 'inactive' : 'active'">
+        <span class="circle-label" [ngClass]="isActiveYears.thirdYear ? 'active-color' : 'inactive-color'">3</span>
+        <p class="year-label" [ngClass]="isActiveYears.thirdYear ? 'year-label-active-color' : 'year-label-inactive-color'">YEAR</p>
+      </div>
+    </div>
+    <div class="arrow-down3" *ngIf="isActiveYears.thirdYear"></div>
+
+    <div class="year4 pointer" [ngClass]="isActiveYears.fourthYear ? 'active' : 'inactive'" (click)="yearChange(YEARS_ENUM.FOURTH)">
+      <div class="circle" [ngClass]="isActiveYears.fourthYear ? 'inactive' : 'active'">
+        <span class="circle-label" [ngClass]="isActiveYears.fourthYear ? 'active-color' : 'inactive-color'">4</span>
+        <p class="year-label" [ngClass]="isActiveYears.fourthYear ? 'year-label-active-color' : 'year-label-inactive-color'">YEAR</p>
+      </div>
+    </div>
+    <div class="arrow-down4" *ngIf="isActiveYears.fourthYear"></div>
+
+  </div>
 </div>

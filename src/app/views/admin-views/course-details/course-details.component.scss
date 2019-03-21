@@ -1,7 +1,116 @@
 @import '../../../../assets/styles/variables.scss';
 
+
+$-top-190: 190px;
+$-left-18: 18%;
+
+@mixin year {
+    height: 110px;
+    width: 110px;
+    border-radius: 10px;
+    position: absolute;
+}
+
+
+@mixin arrow-down-mixin {
+        width: 0; 
+        height: 0; 
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #FE817B;
+        position: absolute;
+        top: 300px;
+
+}
 .navigation-header {
     background-color: white;
     background-image: linear-gradient(to right, white, #fcf4f6 );
 
+}
+
+.cover-photo {
+    position: relative;
+    img {
+        height: 250px;
+        width: 100%;
+    }
+    .year1 {
+        @include year;
+        top: $-top-190;
+        left: $-left-18;
+    }
+
+    .year2 {
+        @include year;
+        top: $-top-190;
+        left: $-left-18 * 2; 
+    }
+    .year3 {
+        @include year;
+        top: $-top-190;
+        left: $-left-18 * 3;
+    }
+    .year4 {
+        @include year;
+        top: $-top-190;
+        left: $-left-18 * 4;
+    }
+    .circle {
+        position: absolute;
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        top: 22px;
+        left: 36px;
+    }
+    .inactive {
+        background-color: white;
+    }
+
+    .active {
+        background-color: #FE817B;
+    }
+    .active-color {
+        color: #FE817B;
+    }
+    .inactive-color {
+        color: white;
+    }
+    .year-label-active-color {
+        color: white
+    }
+
+    .year-label-inactive-color {
+        color: black;
+    }
+    .circle-label {
+        font-size: 18px;
+        font-weight: bold;
+        left: 12px;
+        position: absolute;
+        top: 4px;
+    }
+    .year-label {
+        top: 45px;
+        font-size: 16px;
+        font-weight: 500;
+        position: absolute;
+    }
+    .arrow-down1 {
+        @include arrow-down-mixin;
+        left: 21.5%;
+      }
+      .arrow-down2 {
+        @include arrow-down-mixin;
+        left: 39.5%;
+      }
+      .arrow-down3 {
+        @include arrow-down-mixin;
+        left: 57.5%;
+      }
+      .arrow-down4 {
+        @include arrow-down-mixin;
+        left: 75.5%;
+      }
+      
 }
