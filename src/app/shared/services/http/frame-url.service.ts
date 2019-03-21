@@ -16,7 +16,11 @@ export class FrameURLService {
         if (requestObj.keys.length > 0 && requestObj.values.length > 0) {
             for (let i = 0; i < requestObj.keys.length; i++) {
                 // Replaces the word which starts with colon only. which indicates run time value
-                path = path.replace(':' + requestObj.keys[i], requestObj.values[i]);
+                if (typeof requestObj.values[i] === 'string') {
+                    path = path.replace(':' + requestObj.keys[i], requestObj.values[i]);
+                } else {
+                    path = path.replace(':' + requestObj.keys[i], JSON.stringify(requestObj.values[i]));
+                }
             }
         }
         return path;

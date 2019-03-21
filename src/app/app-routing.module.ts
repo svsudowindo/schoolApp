@@ -14,7 +14,7 @@ import { CustomPreloaderService } from './shared/services/common/preloaders/cust
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/course-details',
     pathMatch: 'full'
   },
   // add the paths which can be used before login
@@ -50,6 +50,10 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: './views/admin-views/dashboard/dashboard.module#DashboardModule',
         canLoad: [CanLoadService] // Use when we want to make a disission to load sub modules or not
+      },
+      {
+        path: 'course-details',
+        loadChildren: './views/admin-views/course-details/course-details.module#CourseDetailsModule'
       }
     ]
   },
