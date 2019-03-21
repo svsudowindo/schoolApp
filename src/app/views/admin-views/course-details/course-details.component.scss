@@ -1,12 +1,12 @@
 @import '../../../../assets/styles/variables.scss';
 
 
-$-top-190: 190px;
+$-top-190: 180px;
 $-left-18: 18%;
 
 @mixin year {
-    height: 110px;
-    width: 110px;
+    height: 125px;
+    width: 125px;
     border-radius: 10px;
     position: absolute;
 }
@@ -15,9 +15,9 @@ $-left-18: 18%;
 @mixin arrow-down-mixin {
         width: 0; 
         height: 0; 
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 10px solid #FE817B;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #FE817B;
         position: absolute;
         top: 300px;
 
@@ -60,8 +60,8 @@ $-left-18: 18%;
         height: 35px;
         width: 35px;
         border-radius: 50%;
-        top: 22px;
-        left: 36px;
+        top: 26px;
+        left: 45px;
     }
     .inactive {
         background-color: white;
