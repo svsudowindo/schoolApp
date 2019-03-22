@@ -7,6 +7,7 @@ import { ResponseMessageComponent } from '../../components/response-message/resp
 import { CommonModule } from '@angular/common';
 import { PopupModule } from '../../components/componentsAsService/popup/popup.module';
 import { SearchComponent } from '../../components/search/search.component';
+import { LoaderModule } from '../../components/componentsAsService/loader/loader.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SearchComponent } from '../../components/search/search.component';
   imports: [
     CommonModule,
     InputTrimModule,
-    PopupModule
+    PopupModule,
+    LoaderModule
   ],
   exports: [
     TrimOnBlurDirective,

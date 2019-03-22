@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from '../../../shared/components/componentsAsService/loader/loader.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,5 +11,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  openLoader() {
+  }
 }
