@@ -14,7 +14,7 @@ import { CustomPreloaderService } from './shared/services/common/preloaders/cust
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/course-details',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   // add the paths which can be used before login

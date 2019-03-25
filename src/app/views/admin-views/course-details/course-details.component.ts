@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonRequestService } from '../../../shared/services/common-request.service';
+import { RequestEnums } from '../../../shared/constants/request-enums';
 enum YEARS {
   FIRST = 'firstYear',
   SECOND = 'secondYear',
@@ -13,7 +15,7 @@ enum YEARS {
 })
 
 export class CourseDetailsComponent implements OnInit {
-
+  subjects = [];
   YEARS_ENUM = YEARS;
   isActiveYears = {
     firstYear: true,
@@ -21,9 +23,17 @@ export class CourseDetailsComponent implements OnInit {
     thirdYear: false,
     fourthYear: false
   };
-  constructor(private _router: Router) { }
-
+  constructor(private _router: Router,
+    private _commonRequestServ: CommonRequestService) { }
   ngOnInit() {
+    this.getCardsInfo();
+  }
+
+  getCardsInfo() {
+    this._commonRequestServ.request(RequestEnums.SUBJECTS_LIST).subscribe(res => {
+      // Utils.log(res);
+      this.subjects = res;
+    });
   }
   navigateToDashboard() {
     this._router.navigate(['dashboard']);
@@ -39,4 +49,6 @@ export class CourseDetailsComponent implements OnInit {
       }
     }
   }
+
+ 
 }

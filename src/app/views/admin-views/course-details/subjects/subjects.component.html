@@ -1,0 +1,18 @@
+<!-- Subject Cards -->
+<div class="d-flex flex-wrap m-l-5-per m-b-40 m-t-60 pointer" (click)="navigateToCourseDetails()">
+  <ng-container *ngFor="let subject of subjects">
+    <div class="card subjects  m-t-25 " style="width: 19rem;">
+      <div class="card-body">
+        <p class="card-title">{{subject.subjectName}}</p>
+        <p class="card-text">{{subject.subjectDescription}}</p>
+        <div class="d-flex action-buttons justify-content-between">
+          <button type="button" class="btn btn-outline-primary font-size-12 font-weight-500">GENERATE</button>
+          <button type="button" class="btn btn-outline-danger font-size-12 font-weight-500">ADD QUESTIONS</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <!-- space -->
+    </div>
+  </ng-container>
+</div>
