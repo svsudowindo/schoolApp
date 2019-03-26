@@ -18,7 +18,7 @@ button.pink-color,.pink-color:hover {
 }
 
 button.pink-color:focus {
-    box-shadow: none;
+    box-shadow: 0 0 0 0.2rem $-pink-color;
 }
 
 input.form-control:focus {
@@ -35,4 +35,41 @@ button.pink-color-label:hover {
     background-color: $-pink-color;
     color: $-white-color;
     border-color: $-pink-color;
+}
+
+.float-labels {
+    .form-group {
+        position: relative;
+        margin-bottom: 1.5rem;
+      }
+    
+      input.form-control:focus {
+        box-shadow: none;
+        border-color: black;
+      }
+      .form-control {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: unset;
+      }
+      
+      .form-control-placeholder {
+        position: absolute;
+        top: 0;
+        padding: 7px 0 0 13px;
+        transition: all 200ms;
+        opacity: 0.5;
+      }
+      
+      .form-control:focus + .form-control-placeholder,
+      .form-control:valid + .form-control-placeholder {
+        font-size: 75%;
+        transform: translate3d(0, -100%, 0);
+        opacity: 1;
+        color: #ef6f6f;
+        font-weight: 500;
+        font-size: 14px;
+      }
+      
 }

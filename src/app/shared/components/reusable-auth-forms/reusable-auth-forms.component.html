@@ -1,0 +1,34 @@
+<div>
+  <div class="p-t-100 p-b-30">
+    <app-logo></app-logo>
+  </div>
+  <form class="float-labels">
+    <div class="container align-middle my-2-em">
+      <div class="row">
+        <ng-container *ngFor="let formField of formInfo">
+          <div class="col-md-10 mx-auto">
+            <ng-container *ngIf="isTextField(formField.type)">
+              <div class="form-group">
+                <input [type]="formField.type" [id]="formField.id" class="form-control" required>
+                <label class="form-control-placeholder" [for]="formField.id">{{formField.label}}</label>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="isButton(formField.type)">
+              <button [type]="formField.type" class="btn pink-color btn-block border-radius-25 m-t-50">{{formField.label | titlecase}}</button>
+            </ng-container>
+            <ng-container *ngIf="isLink(formField.type)">
+              <div class="m-t-40">
+                <p class="font-weight-500 font-size-14 m-b-0" *ngIf="formField.hasDescription">
+                  {{formField.description}}
+                </p>
+                <a [id]="formField" class="register-link">
+                  {{formField.label}}
+                </a>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </form>
+</div>

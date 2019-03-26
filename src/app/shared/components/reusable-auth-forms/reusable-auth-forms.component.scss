@@ -1,0 +1,11 @@
+@import '../../../../assets/styles/variables.scss';
+.my-2-em {
+    margin-top: 2em !important;
+}
+
+a.register-link {
+    color: $-pink-color;
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: 500;
+}

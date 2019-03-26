@@ -7,7 +7,6 @@ import { PredefinedModule } from './modules/predefined/predefined.module';
 import { CustomModule } from './modules/custom/custom.module';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     CustomModule,

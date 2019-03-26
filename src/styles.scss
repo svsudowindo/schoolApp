@@ -2,7 +2,8 @@
 
 @import './assets/styles/app.scss';
 
-html, body { height: 100%;    background-image: linear-gradient(to right, #FFDBE7, #FFDBE7 );}
+
+html, body { height: 100%;    background: url(./assets/images/app/background-image.png) no-repeat center center fixed}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 

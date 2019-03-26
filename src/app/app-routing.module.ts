@@ -27,6 +27,14 @@ const routes: Routes = [
         loadChildren: './views/auth-views/login/login.module#LoginModule'
       },
       {
+        path: 'forgot-password',
+        loadChildren: './views/auth-views/forgot-password/forgot-password.module#ForgotPasswordModule'
+      },
+      {
+        path: 'reset-password',
+        loadChildren: './views/auth-views/reset-password/reset-password.module#ResetPasswordModule'
+      },
+      {
         path: '404',
         loadChildren: './views/auth-views/page-not-found/page-not-found.module#PageNotFoundModule'
       },

@@ -19,7 +19,32 @@ export class LoginComponent extends BaseClass implements OnInit {
 
   public successMessageStatus: string;
   public errorMessageStatus: string;
-
+  loginForm = [
+    {
+      type: 'text',
+      label: 'Username',
+      id: 'Username',
+      required: true
+    },
+    {
+      type: 'password',
+      label: 'Password',
+      id: 'Password',
+      required: true
+    },
+    {
+      type: 'button',
+      label: 'Sign in',
+      id: 'login'
+    },
+    {
+      type: 'link',
+      label: 'Register Here',
+      id: 'register',
+      hasDescription: true,
+      description: 'Dont have account yet ?'
+    }
+  ];
   // once successfull login make can activate service to true
   constructor(public route: Router,
     public injector: Injector,

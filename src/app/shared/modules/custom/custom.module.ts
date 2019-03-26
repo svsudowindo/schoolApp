@@ -8,12 +8,16 @@ import { CommonModule } from '@angular/common';
 import { PopupModule } from '../../components/componentsAsService/popup/popup.module';
 import { SearchComponent } from '../../components/search/search.component';
 import { LoaderModule } from '../../components/componentsAsService/loader/loader.module';
+import { LogoComponent } from '../../components/logo/logo.component';
+import { ReusableAuthFormsComponent } from '../../components/reusable-auth-forms/reusable-auth-forms.component';
 
 @NgModule({
   declarations: [
     TrimOnBlurDirective,
     ResponseMessageComponent,
-    SearchComponent
+    SearchComponent,
+    LogoComponent,
+    ReusableAuthFormsComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +30,9 @@ import { LoaderModule } from '../../components/componentsAsService/loader/loader
     InputTrimModule,
     PopupModule,
     ResponseMessageComponent,
-    SearchComponent
+    SearchComponent,
+    LogoComponent,
+    ReusableAuthFormsComponent
   ]
 })
 export class CustomModule { }
