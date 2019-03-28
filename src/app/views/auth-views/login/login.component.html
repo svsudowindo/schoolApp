@@ -1,6 +1,6 @@
 <div>
  
-  <app-reusable-auth-forms [formInfo]="loginForm"></app-reusable-auth-forms>
+  <app-reusable-auth-forms [formInfo]="loginForm" (formInfoEmitter)="login($event)"></app-reusable-auth-forms>
   <!-- <form class="float-labels">
     <div class="container align-middle my-2-em">
       <div class="row">
