@@ -71,5 +71,12 @@ button.pink-color-label:hover {
         font-weight: 500;
         font-size: 14px;
       }
+
+      .btn:disabled{
+        background-color: #403c3c;
+        border-color: #403c3c;
+        cursor: not-allowed;
+        pointer-events: all !important;
+    }
       
 }

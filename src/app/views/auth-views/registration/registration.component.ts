@@ -97,7 +97,6 @@ export class RegistrationComponent extends BaseClass implements OnInit {
 
   onSubmit() {
     if (this.registerationForm.valid) {
-      console.log(this.registerationForm.value);
       this.registerationForm.reset();
       this.registerationNgForm.resetForm(); // used only for angular material
     }

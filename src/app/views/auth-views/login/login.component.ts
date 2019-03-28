@@ -9,6 +9,7 @@ import { CommonRequestService } from '../../../shared/services/common-request.se
 import { PopupService } from '../../../shared/components/componentsAsService/popup/popup.service';
 import { POPUP } from '../../../shared/constants/popup-enum';
 import { IDataInfo } from '../../../shared/components/componentsAsService/popup/popup-info.service';
+import { FORM_TYPES, VALIDATION_PATTERNS, VALIDATION_TYPES } from '../../../shared/constants/validation-patterns';
 
 @Component({
   selector: 'app-login',
@@ -21,28 +22,37 @@ export class LoginComponent extends BaseClass implements OnInit {
   public errorMessageStatus: string;
   loginForm = [
     {
-      type: 'text',
-      label: 'Username',
-      id: 'Username',
-      required: true
+      type: FORM_TYPES.TEXT,
+      label: 'Username or Email',
+      id: 'username',
+      required: true,
+      formControlName: 'username',
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
+      validatorMessages: ['Username is required']
     },
     {
-      type: 'password',
+      type: FORM_TYPES.PASSWORD,
       label: 'Password',
-      id: 'Password',
-      required: true
+      id: 'password',
+      required: true,
+      formControlName: 'password',
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
+      validatorMessages: ['Password is required']
     },
     {
-      type: 'button',
+      type: FORM_TYPES.SUBMIT,
       label: 'Sign in',
-      id: 'login'
+      id: 'sign_in'
     },
     {
-      type: 'link',
+      type: FORM_TYPES.LINK,
       label: 'Register Here',
-      id: 'register',
+      id: 'register_login',
       hasDescription: true,
-      description: 'Dont have account yet ?'
+      description: 'Dont have account yet ?',
+      navigationPath: '/login'
     }
   ];
   // once successfull login make can activate service to true
@@ -66,7 +76,6 @@ export class LoginComponent extends BaseClass implements OnInit {
     this._globalVariables.setParameterData(GlobalVariableEnums.TOKEN, 'abc');
     RequestEnums.LOGIN.values.push(1);
     this._commonRequest.request(RequestEnums.LOGIN).subscribe((res) => {
-      console.log(res);
       this.successMessageStatus = 'Success';
     },
       ((err) => {
@@ -88,8 +97,6 @@ export class LoginComponent extends BaseClass implements OnInit {
     });
   }
 
-  submit(){
-    console.log("submit called from login");
-    this.route.navigate(['dashboard']);
+  login(loginData) {
   }
 }

@@ -24,7 +24,6 @@ export class PopupService {
       size: sizeInput,
       centered: centeredInput
     });
-    console.log(inputData);
     return this._popupinfoService.modalRef.result;
   }
 }

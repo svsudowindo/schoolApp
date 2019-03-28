@@ -16,7 +16,6 @@ export class CardsListComponent implements OnInit {
     private _router: Router) { }
 
   ngOnInit() {
-    console.log('cards');
     this.getCardsInfo();
   }
 

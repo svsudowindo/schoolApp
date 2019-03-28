@@ -10,6 +10,7 @@ import { SearchComponent } from '../../components/search/search.component';
 import { LoaderModule } from '../../components/componentsAsService/loader/loader.module';
 import { LogoComponent } from '../../components/logo/logo.component';
 import { ReusableAuthFormsComponent } from '../../components/reusable-auth-forms/reusable-auth-forms.component';
+import { PredefinedModule } from '../predefined/predefined.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReusableAuthFormsComponent } from '../../components/reusable-auth-forms
     CommonModule,
     InputTrimModule,
     PopupModule,
-    LoaderModule
+    LoaderModule,
+    PredefinedModule
   ],
   exports: [
     TrimOnBlurDirective,
