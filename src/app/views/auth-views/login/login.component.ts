@@ -87,4 +87,9 @@ export class LoginComponent extends BaseClass implements OnInit {
       console.log(reason);
     });
   }
+
+  submit(){
+    console.log("submit called from login");
+    this.route.navigate(['dashboard']);
+  }
 }

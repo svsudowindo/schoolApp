@@ -8,6 +8,14 @@ export const environment = {
     // level: Level.LOG,
     enabled: true
   },
+  firebaseConfig: {
+    apiKey: "AIzaSyASbab-bDWWRUxmBggPidmwqMVVIVyIgGg",
+    authDomain: "school-d8681.firebaseapp.com",
+    databaseURL: "https://school-d8681.firebaseio.com",
+    projectId: "school-d8681",
+    storageBucket: "school-d8681.appspot.com",
+    messagingSenderId: "451732381098"
+  },
   // Any base url of the application which is common for all request
   // BASE_URL: 'https://jsonplaceholder.typicode.com',
   BASE_URL: 'http://localhost:4200'

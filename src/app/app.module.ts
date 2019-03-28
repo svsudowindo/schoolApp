@@ -16,6 +16,10 @@ import { HeaderInterceptorsService } from './shared/services/http/header-interce
 
 import { environment } from './../environments/environment';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +27,9 @@ import { environment } from './../environments/environment';
     AdminLayoutComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
