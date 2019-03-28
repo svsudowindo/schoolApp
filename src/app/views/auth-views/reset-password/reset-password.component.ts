@@ -38,7 +38,6 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   reset(data) {
-    console.log(data);
   }
 
 }

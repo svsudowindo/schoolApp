@@ -36,7 +36,6 @@ export class GlobalVariables {
   public setParameterData(key, input, retainValue = true) {
     this.paramsData[key] = input;
     this.retainParamValue = retainValue;
-    console.log(this.paramsData);
   }
 
 }

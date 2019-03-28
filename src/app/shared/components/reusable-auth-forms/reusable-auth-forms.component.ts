@@ -65,7 +65,6 @@ export class ReusableAuthFormsComponent extends BaseClass implements OnInit, OnC
         type: field['validatorsTypes'][j],
         message: field['validatorMessages'][j]
       };
-      // console.log(fieldErrors);
       this.validation_messages[field['formControlName']].push(fieldErrors);
     }
     return validatorsArray;
@@ -93,5 +92,8 @@ export class ReusableAuthFormsComponent extends BaseClass implements OnInit, OnC
   }
   private formSubmit() {
     this.formInfoEmitter.emit(this.dynamicForm.value);
+  }
+  private isFormValid() {
+    return this.dynamicForm.invalid;
   }
 }

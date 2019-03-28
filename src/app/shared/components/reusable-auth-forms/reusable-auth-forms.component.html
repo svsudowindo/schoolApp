@@ -13,12 +13,12 @@
                   [required]="formField.required">
                 <label class="form-control-placeholder" [for]="formField.id">{{formField.label}}</label>
               </div>
-              <ngb-alert type="danger" [dismissible]="false" *ngIf="dynamicForm.get(formField.formControlName).invalid && dynamicForm.get(formField.formControlName).touched">
+              <ngb-alert class="m-b-25" type="danger" [dismissible]="false" *ngIf="dynamicForm.get(formField.formControlName).invalid && dynamicForm.get(formField.formControlName).touched">
                 {{ getErrorMessage(dynamicForm, validation_messages, formField.formControlName) }}
               </ngb-alert>
             </ng-container>
             <ng-container *ngIf="isButton(formField.type)">
-              <button [type]="formField.type" class="btn pink-color btn-block border-radius-25 m-t-50">{{formField.label
+              <button [disabled]="isFormValid()" [type]="formField.type" class="btn pink-color btn-block border-radius-25 m-t-50">{{formField.label
                 | titlecase}}</button>
             </ng-container>
             <ng-container *ngIf="isLink(formField.type)">
