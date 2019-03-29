@@ -34,3 +34,18 @@ a.register-link {
 .has-search .r-0 {
     right: 0;
 }
+
+.has-search .input-group-append .btn {
+    background-color: white;
+    color: $-pink-color;
+    border: 0px 0px 1px 0px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: rgb(206, 212, 218);
+    font-weight: 500;
+}
+
+.has-search .input-group-append .btn:focus {
+    box-shadow: none;
+}

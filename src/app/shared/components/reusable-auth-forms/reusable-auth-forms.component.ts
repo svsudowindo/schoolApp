@@ -101,16 +101,19 @@ export class ReusableAuthFormsComponent extends BaseClass implements OnInit, OnC
     return this.dynamicForm.invalid;
   }
 
-  private isGroupedInput(field) {
-    if (Utils.isValidInput(field)) {
+  private isGroupedInput(field, direction) {
+    if (Utils.isValidInput(field.isInputGrouped) &&
+      Utils.isValidInput(field.groupedInfo) &&
+      Utils.isValidInput(field.groupedInfo.direction) &&
+      field.groupedInfo.direction === direction) {
       return field;
     }
   }
 
   private navigate(groupedInfo) {
     console.log('hai');
-    if (Utils.isValidInput(groupedInfo) && groupedInfo.isLink) {
-      this._router.navigateByUrl(groupedInfo);
+    if (Utils.isValidInput(groupedInfo) && Utils.isValidInput(groupedInfo.link)) {
+      this._router.navigateByUrl(groupedInfo.link);
     }
   }
 

@@ -44,10 +44,10 @@ export class LoginComponent extends BaseClass implements OnInit {
       validatorMessages: ['Password is required'],
       isInputGrouped: true,
       groupedInfo: {
-        label: 'search',
+        label: 'Forgot?', // pass material-icon name here if type is icon
         direction: GROUPED_INPUT_ENUM.RIGHT,
         link: '/forgot-password',
-        type: GROUPED_INPUT_ENUM.ICON
+        type: GROUPED_INPUT_ENUM.LINK
       }
     },
     {
