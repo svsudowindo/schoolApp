@@ -10,6 +10,7 @@ import { PopupService } from '../../../shared/components/componentsAsService/pop
 import { POPUP } from '../../../shared/constants/popup-enum';
 import { IDataInfo } from '../../../shared/components/componentsAsService/popup/popup-info.service';
 import { FORM_TYPES, VALIDATION_PATTERNS, VALIDATION_TYPES } from '../../../shared/constants/validation-patterns';
+import { GROUPED_INPUT_ENUM } from '../../../shared/constants/app-enums';
 import { LoginService } from './login.service';
 
 @Component({
@@ -30,7 +31,8 @@ export class LoginComponent extends BaseClass implements OnInit {
       formControlName: 'email',
       validators: [VALIDATION_PATTERNS.REQUIRED],
       validatorsTypes: [VALIDATION_TYPES.REQUIRED],
-      validatorMessages: ['Email is required']
+      validatorMessages: ['Username is required'],
+      isInputGrouped: false
     },
     {
       type: FORM_TYPES.PASSWORD,
@@ -40,7 +42,14 @@ export class LoginComponent extends BaseClass implements OnInit {
       formControlName: 'password',
       validators: [VALIDATION_PATTERNS.REQUIRED],
       validatorsTypes: [VALIDATION_TYPES.REQUIRED],
-      validatorMessages: ['Password is required']
+      validatorMessages: ['Password is required'],
+      isInputGrouped: true,
+      groupedInfo: {
+        label: 'Forgot?', // pass material-icon name here if type is icon
+        direction: GROUPED_INPUT_ENUM.RIGHT,
+        link: '/forgot-password',
+        type: GROUPED_INPUT_ENUM.LINK
+      }
     },
     {
       type: FORM_TYPES.SUBMIT,
