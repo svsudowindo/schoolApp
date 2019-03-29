@@ -21,7 +21,7 @@ export class CardsListComponent implements OnInit {
 
   getCardsInfo() {
     this._commonRequestServ.request(RequestEnums.CARDS_LIST).subscribe(res => {
-      // Utils.log(res);
+       Utils.log(JSON.stringify(this.subjects));
       this.subjects = res;
     });
   }
