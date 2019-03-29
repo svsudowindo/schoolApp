@@ -9,3 +9,28 @@ a.register-link {
     font-size: 14px;
     font-weight: 500;
 }
+
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 4;
+    display: block;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: $-pink-color;
+    font-weight: 500;
+}
+
+.has-search .link {
+    font-size: 14px;
+}
+
+.has-search .icon {
+    font-size: 20px;
+}
+
+.has-search .r-0 {
+    right: 0;
+}

@@ -4,6 +4,8 @@ import { BaseClass } from '../../services/common/baseClass';
 import Utils from '../../services/common/utils';
 import { VALIDATION_TYPES, FORM_TYPES } from '../../constants/validation-patterns';
 import { CustomValidators } from '../../services/common/validators';
+import { Router } from '@angular/router';
+import { GROUPED_INPUT_ENUM } from '../../constants/app-enums';
 
 @Component({
   selector: 'app-reusable-auth-forms',
@@ -16,10 +18,12 @@ export class ReusableAuthFormsComponent extends BaseClass implements OnInit, OnC
 
   @Output()
   formInfoEmitter: EventEmitter<any> = new EventEmitter();
+  GROUPED_INPUT_ENUM = GROUPED_INPUT_ENUM;
   private validation_messages = {};
   private dynamicForm: FormGroup;
   constructor(private _formBuilder: FormBuilder,
-    public injector: Injector) {
+    public injector: Injector,
+    private _router: Router) {
     super(injector);
   }
 
@@ -95,5 +99,24 @@ export class ReusableAuthFormsComponent extends BaseClass implements OnInit, OnC
   }
   private isFormValid() {
     return this.dynamicForm.invalid;
+  }
+
+  private isGroupedInput(field) {
+    if (Utils.isValidInput(field)) {
+      return field;
+    }
+  }
+
+  private navigate(groupedInfo) {
+    console.log('hai');
+    if (Utils.isValidInput(groupedInfo) && groupedInfo.isLink) {
+      this._router.navigateByUrl(groupedInfo);
+    }
+  }
+
+  private checkGroupedInfoType(input, expected) {
+    if (Utils.isValidInput(input) && input === expected) {
+      return true;
+    }
   }
 }
