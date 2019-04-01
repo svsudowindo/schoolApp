@@ -4,7 +4,7 @@
       <div class="d-flex flex-wrap">
         <img src="../../../../assets/icons/profile.jpg" class="rounded-circle">
         <div class="w-550 m-l-40">
-          <app-search></app-search>
+          <app-search (searchCourse)="searchCourse($event)"></app-search>
         </div>
         <div class="m-t-10 m-l-50">
           <button type="button" class="btn pink-color-label">
@@ -18,7 +18,7 @@
       </div>
 
       <!-- cards -->
-      <app-cards-list></app-cards-list>
+      <app-cards-list [searchKey]="searchKey"></app-cards-list>
     </div>
   </div>
 </div>

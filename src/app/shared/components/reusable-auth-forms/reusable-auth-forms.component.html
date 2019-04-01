@@ -9,10 +9,6 @@
           <div class="col-md-10 mx-auto">
             <ng-container *ngIf="isTextField(formField.type)">
               <div class="form-group has-search">
-                <!-- <ng-container *ngIf="isGroupedInput(formField.isInputGrouped)">
-                  <a *ngIf="checkGroupedInfoType(formField.groupedInfo.type, GROUPED_INPUT_ENUM.LINK)" class="form-control-feedback icon" [ngClass]="formField.groupedInfo.direction === 'right' ? 'r-0' : ''" (click)="navigate(formField.groupedInfo)">{{formField.groupedInfo.label}}</a>
-                  <span *ngIf="checkGroupedInfoType(formField.groupedInfo.type, GROUPED_INPUT_ENUM.ICON)" class="form-control-feedback material-icons icon" [ngClass]="formField.groupedInfo.direction === GROUPED_INPUT_ENUM.RIGHT ? 'r-0' : ''">{{formField.groupedInfo.label}}</span>
-                </ng-container> -->
                 <div class="input-group">
                   <ng-container *ngIf="isGroupedInput(formField, GROUPED_INPUT_ENUM.LEFT)">
                     <div class="input-group-append">

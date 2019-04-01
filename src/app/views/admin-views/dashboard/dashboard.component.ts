@@ -7,10 +7,14 @@ import { LoaderService } from '../../../shared/components/componentsAsService/lo
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  searchKey: string;
   constructor() { }
 
   ngOnInit() {
   }
   openLoader() {
+  }
+  searchCourse(searchValue) {
+    this.searchKey = searchValue;
   }
 }

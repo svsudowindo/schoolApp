@@ -1,13 +1,13 @@
 <form class="m-t-10">
-    <div class="form-group has-search">
-      <span class="material-icons form-control-feedback">search</span>
-      <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for your course">
-          <div class="input-group-append">
-            <button class="btn pink-color" type="button">
-             Search
-            </button>
-          </div>
-        </div>
-    </div>
-  </form>
+  <div class="form-group has-search">
+    <span class="material-icons form-control-feedback">search</span>
+    <form class="input-group">
+      <input type="text" class="form-control" placeholder="Search for your course" name="search" (keyup.enter)="search()"  [(ngModel)]="searchValue">
+      <div class="input-group-append">
+        <button class="btn pink-color" type="button" (click)="search()">
+          Search
+        </button>
+      </div>
+    </form>
+  </div>
+</form>
