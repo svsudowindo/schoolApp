@@ -10,7 +10,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./cards-list.component.scss']
 })
 export class CardsListComponent implements OnInit {
-  subjects = [];
+  subjects = [
+    {
+      "subjectName": "Mechanical Engineering",
+      "subjectCode": "MECH",
+      "subjectDescription": "Mechanical Engineering Description"
+    },
+    {
+      "subjectName": "MBA",
+      "subjectCode": "MBA",
+      "subjectDescription": "MBA Description"
+    },
+    {
+      "subjectName": "Accounts",
+      "subjectCode": "ACC",
+      "subjectDescription": "Accounts Description"
+    },
+    {
+      "subjectName": "Mechanical Engineering",
+      "subjectCode": "MECH",
+      "subjectDescription": "Mechanical Engineering Description"
+    },
+    {
+      "subjectName": "MBA",
+      "subjectCode": "MBA",
+      "subjectDescription": "MBA Description"
+    },
+    {
+      "subjectName": "Accounts",
+      "subjectCode": "ACC",
+      "subjectDescription": "Accounts Description"
+    }
+  ];
 
   constructor(private _commonRequestServ: CommonRequestService,
     private _router: Router) { }
@@ -20,10 +51,10 @@ export class CardsListComponent implements OnInit {
   }
 
   getCardsInfo() {
-    this._commonRequestServ.request(RequestEnums.CARDS_LIST).subscribe(res => {
-      // Utils.log(res);
-      this.subjects = res;
-    });
+    // this._commonRequestServ.request(RequestEnums.CARDS_LIST).subscribe(res => {
+    //    Utils.log(JSON.stringify(this.subjects));
+    //   this.subjects = res;
+    // });
   }
 
   navigateToCourseDetails() {

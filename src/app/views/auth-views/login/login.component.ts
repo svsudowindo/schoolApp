@@ -11,6 +11,7 @@ import { POPUP } from '../../../shared/constants/popup-enum';
 import { IDataInfo } from '../../../shared/components/componentsAsService/popup/popup-info.service';
 import { FORM_TYPES, VALIDATION_PATTERNS, VALIDATION_TYPES } from '../../../shared/constants/validation-patterns';
 import { GROUPED_INPUT_ENUM } from '../../../shared/constants/app-enums';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -24,13 +25,13 @@ export class LoginComponent extends BaseClass implements OnInit {
   loginForm = [
     {
       type: FORM_TYPES.TEXT,
-      label: 'Username or Email',
-      id: 'username',
+      label: 'Email',
+      id: 'email',
       required: true,
-      formControlName: 'username',
-      validators: [VALIDATION_PATTERNS.REQUIRED],
-      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
-      validatorMessages: ['Username is required'],
+      formControlName: 'email',
+      validators: [VALIDATION_PATTERNS.REQUIRED, VALIDATION_PATTERNS.EMAIL],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED, VALIDATION_TYPES.PATTERN],
+      validatorMessages: ['Please enter the email','Please enter the valid email'],
       isInputGrouped: false
     },
     {
@@ -41,12 +42,12 @@ export class LoginComponent extends BaseClass implements OnInit {
       formControlName: 'password',
       validators: [VALIDATION_PATTERNS.REQUIRED],
       validatorsTypes: [VALIDATION_TYPES.REQUIRED],
-      validatorMessages: ['Password is required'],
+      validatorMessages: ['Please enter the password'],
       isInputGrouped: true,
       groupedInfo: {
         label: 'Forgot?', // pass material-icon name here if type is icon
         direction: GROUPED_INPUT_ENUM.RIGHT,
-        link: '/forgot-password',
+        link: '/reset-password',
         type: GROUPED_INPUT_ENUM.LINK
       }
     },
@@ -61,7 +62,7 @@ export class LoginComponent extends BaseClass implements OnInit {
       id: 'register_login',
       hasDescription: true,
       description: 'Dont have account yet ?',
-      navigationPath: '/login'
+      navigationPath: '/registration'
     }
   ];
   // once successfull login make can activate service to true
@@ -69,7 +70,8 @@ export class LoginComponent extends BaseClass implements OnInit {
     public injector: Injector,
     private _commonRequest: CommonRequestService,
     private _globalVariables: GlobalVariables,
-    private _popService: PopupService) {
+    private _popService: PopupService,
+    private _loginService: LoginService) {
     super(injector);
   }
 
@@ -86,8 +88,7 @@ export class LoginComponent extends BaseClass implements OnInit {
     RequestEnums.LOGIN.values.push(1);
     this._commonRequest.request(RequestEnums.LOGIN).subscribe((res) => {
       this.successMessageStatus = 'Success';
-    },
-      ((err) => {
+    }, ((err) => {
         this.errorMessageStatus = err;
       }));
   }
@@ -106,6 +107,15 @@ export class LoginComponent extends BaseClass implements OnInit {
     });
   }
 
-  login(loginData) {
+  submit(loginData) {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa   ::::: " + JSON.stringify(loginData) );
+    
+    this._loginService.login(loginData).subscribe((loginResponse) =>{
+      Utils.log('loginResponse    ::::::  ' + JSON.stringify(loginResponse));
+      this.route.navigate(['dashboard']);
+    },(error) =>{
+      Utils.log('login error Response    ::::::  ' + JSON.stringify(error));
+    });
+
   }
 }

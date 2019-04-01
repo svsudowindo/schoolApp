@@ -39,7 +39,17 @@ export class ForgotPasswordComponent implements OnInit {
       label: 'Register Here',
       id: 'register',
       hasDescription: true,
-      description: 'Dont have account yet ?'
+      description: 'Dont have account yet ?',
+      navigationPath: '/registration'
+    },
+    {
+      type: FORM_TYPES.LINK,
+      label: 'Go back to login',
+      id: 'back',
+      hasDescription: false,
+      description: '',
+      navigationPath: '/login'
+      
     }
   ];
   constructor() { }
