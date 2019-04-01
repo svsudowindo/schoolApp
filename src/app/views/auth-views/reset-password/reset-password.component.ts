@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FORM_TYPES, VALIDATION_PATTERNS, VALIDATION_TYPES } from '../../../shared/constants/validation-patterns';
+import { Router } from '@angular/router';
+import { ResetPasswordService } from './reset-password.service';
+import Utils from 'src/app/shared/services/common/utils';
 
 @Component({
   selector: 'app-reset-password',
@@ -9,14 +12,14 @@ import { FORM_TYPES, VALIDATION_PATTERNS, VALIDATION_TYPES } from '../../../shar
 export class ResetPasswordComponent implements OnInit {
   resetForm = [
     {
-      type: FORM_TYPES.NUMBER,
-      label: 'Username or Email',
-      id: 'username_email',
+      type: FORM_TYPES.TEXT,
+      label: 'Email',
+      id: 'email',
       required: true,
-      formControlName: 'username',
-      validators: [VALIDATION_PATTERNS.REQUIRED, 4],
-      validatorsTypes: [VALIDATION_TYPES.REQUIRED, VALIDATION_TYPES.MIN_LENGTH],
-      validatorMessages: ['Email is required', 'Enter valid MIN LENGTH']
+      formControlName: 'email',
+      validators: [VALIDATION_PATTERNS.REQUIRED,  VALIDATION_PATTERNS.EMAIL],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED, VALIDATION_TYPES.PATTERN],
+      validatorMessages: ['Please enter the email', 'Please enter the valid email']
     },
     {
       type: FORM_TYPES.SUBMIT,
@@ -29,15 +32,32 @@ export class ResetPasswordComponent implements OnInit {
       id: 'register',
       hasDescription: true,
       description: 'Dont have account yet ?',
+      navigationPath: '/registration'
+    },
+    {
+      type: FORM_TYPES.LINK,
+      label: 'Go back to login',
+      id: 'back',
+      hasDescription: true,
+      description: '',
       navigationPath: '/login'
     }
   ];
-  constructor() { }
+  constructor(private _router: Router,
+    private _resetService: ResetPasswordService) { }
 
   ngOnInit() {
   }
 
-  reset(data) {
+  reset(resetData) {
+    Utils.log('reset data  :::: ' + JSON.stringify(resetData));
+    this._resetService.resetPassword(resetData).subscribe((response) => {
+      Utils.log('reset password success response   ::: ' + JSON.stringify(response));
+      alert('Reset link will be sent to your registered email');
+     // this._router.navigate(['forgot-password']);
+    }, (error) => {
+      Utils.log('reset password error response   ::: ' + JSON.stringify(error));
+    });
   }
 
 }

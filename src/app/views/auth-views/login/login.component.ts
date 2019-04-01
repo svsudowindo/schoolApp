@@ -29,9 +29,9 @@ export class LoginComponent extends BaseClass implements OnInit {
       id: 'email',
       required: true,
       formControlName: 'email',
-      validators: [VALIDATION_PATTERNS.REQUIRED],
-      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
-      validatorMessages: ['Username is required'],
+      validators: [VALIDATION_PATTERNS.REQUIRED, VALIDATION_PATTERNS.EMAIL],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED, VALIDATION_TYPES.PATTERN],
+      validatorMessages: ['Please enter the email','Please enter the valid email'],
       isInputGrouped: false
     },
     {
@@ -42,12 +42,12 @@ export class LoginComponent extends BaseClass implements OnInit {
       formControlName: 'password',
       validators: [VALIDATION_PATTERNS.REQUIRED],
       validatorsTypes: [VALIDATION_TYPES.REQUIRED],
-      validatorMessages: ['Password is required'],
+      validatorMessages: ['Please enter the password'],
       isInputGrouped: true,
       groupedInfo: {
         label: 'Forgot?', // pass material-icon name here if type is icon
         direction: GROUPED_INPUT_ENUM.RIGHT,
-        link: '/forgot-password',
+        link: '/reset-password',
         type: GROUPED_INPUT_ENUM.LINK
       }
     },

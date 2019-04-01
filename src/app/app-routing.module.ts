@@ -23,6 +23,10 @@ const routes: Routes = [
     component: AuthLayoutComponent,
     children: [
       {
+        path: '',
+        loadChildren: './views/auth-views/login/login.module#LoginModule'
+      },
+      {
         path: 'login',
         loadChildren: './views/auth-views/login/login.module#LoginModule'
       },

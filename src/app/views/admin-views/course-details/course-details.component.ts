@@ -15,7 +15,38 @@ enum YEARS {
 })
 
 export class CourseDetailsComponent implements OnInit {
-  subjects = [];
+  subjects = [
+    {
+      "subjectName": "Mechanical Engineering",
+      "subjectCode": "MECH",
+      "subjectDescription": "Mechanical Engineering Description"
+    },
+    {
+      "subjectName": "MBA",
+      "subjectCode": "MBA",
+      "subjectDescription": "MBA Description"
+    },
+    {
+      "subjectName": "Accounts",
+      "subjectCode": "ACC",
+      "subjectDescription": "Accounts Description"
+    },
+    {
+      "subjectName": "Mechanical Engineering",
+      "subjectCode": "MECH",
+      "subjectDescription": "Mechanical Engineering Description"
+    },
+    {
+      "subjectName": "MBA",
+      "subjectCode": "MBA",
+      "subjectDescription": "MBA Description"
+    },
+    {
+      "subjectName": "Accounts",
+      "subjectCode": "ACC",
+      "subjectDescription": "Accounts Description"
+    }
+  ];
   YEARS_ENUM = YEARS;
   isActiveYears = {
     firstYear: true,
@@ -30,10 +61,10 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   getCardsInfo() {
-    this._commonRequestServ.request(RequestEnums.SUBJECTS_LIST).subscribe(res => {
-      // Utils.log(res);
-      this.subjects = res;
-    });
+    // this._commonRequestServ.request(RequestEnums.SUBJECTS_LIST).subscribe(res => {
+    //   // Utils.log(res);
+    //   this.subjects = res;
+    // });
   }
   navigateToDashboard() {
     this._router.navigate(['dashboard']);

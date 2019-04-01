@@ -14,14 +14,14 @@ import { GROUPED_INPUT_ENUM } from '../../constants/app-enums';
 })
 export class ReusableAuthFormsComponent extends BaseClass implements OnInit, OnChanges {
   @Input()
-  private formInfo: any[];
+  public formInfo: any[];
 
   @Output()
   formInfoEmitter: EventEmitter<any> = new EventEmitter();
   GROUPED_INPUT_ENUM = GROUPED_INPUT_ENUM;
   private validation_messages = {};
-  private dynamicForm: FormGroup;
-  constructor(private _formBuilder: FormBuilder,
+  public dynamicForm: FormGroup;
+  constructor(public _formBuilder: FormBuilder,
     public injector: Injector,
     private _router: Router) {
     super(injector);
@@ -94,7 +94,7 @@ export class ReusableAuthFormsComponent extends BaseClass implements OnInit, OnC
       return true;
     }
   }
-  private formSubmit() {
+  public formSubmit() {
     this.formInfoEmitter.emit(this.dynamicForm.value);
   }
   private isFormValid() {
