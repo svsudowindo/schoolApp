@@ -11,14 +11,6 @@ export class CustomValidators {
     }
   }
 
-  // static validatePhoneNumber(fc: FormControl) {
-  //   if (!fc.value || fc.value.trim() === '' || fc.value.trim().replace(/\D+/g, '').length !== 15) {
-  //     return ({ validatePhoneNumber: true });
-  //   } else {
-  //     return (null);
-  //   }
-  // }
-
   static validateFileType(fc: FormControl) {
     if (fc.value && fc.value.trim() === '') {
       const fileName = fc.value;
