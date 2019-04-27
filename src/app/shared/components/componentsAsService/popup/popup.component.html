@@ -1,16 +1,34 @@
 <div class="modal-header">
-  <h4 class="modal-title" [ngClass]="popupObtainedInfo.type === POPUPENUM.SUCCESS ? 'success-message' : 'error-message'">
+  <h4 *ngIf="popupObtainedInfo.dialog_type === DIALOG_TYPE.ALERT_DIALOG" class="modal-title" [ngClass]="popupObtainedInfo.type === POPUPENUM.SUCCESS ? 'text-success' : 'error-message'">
     {{popupObtainedInfo.title | titlecase}}
   </h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <h4 *ngIf="popupObtainedInfo.dialog_type === DIALOG_TYPE.CONFIMATION_DIALOG" class="modal-title text-info">
+    {{popupObtainedInfo.title | titlecase}}
+  </h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <p [ngClass]="popupObtainedInfo.type === POPUPENUM.SUCCESS ? 'success-message' : 'error-message'">
+  <p *ngIf="popupObtainedInfo.dialog_type === DIALOG_TYPE.ALERT_DIALOG" [ngClass]="popupObtainedInfo.type === POPUPENUM.SUCCESS ? 'text-success' : 'text-danger'">
+    {{popupObtainedInfo.message}}
+  </p>
+
+  <p class="text-info" *ngIf="popupObtainedInfo.dialog_type === DIALOG_TYPE.CONFIMATION_DIALOG">
     {{popupObtainedInfo.message}}
   </p>
 </div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="submit()">{{popupObtainedInfo.okButtonLabel | uppercase}}</button>
-</div>
+<ng-container *ngIf="popupObtainedInfo.dialog_type === DIALOG_TYPE.ALERT_DIALOG">
+  <div class="modal-footer">
+    <button type="button" class="btn pink-color-label" (click)="submit()">{{popupObtainedInfo.okButtonLabel |
+      uppercase}}</button>
+  </div>
+</ng-container>
+<ng-container *ngIf="popupObtainedInfo.dialog_type === DIALOG_TYPE.CONFIMATION_DIALOG">
+  <div class="modal-footer">
+    <button type="button" class="btn pink-color-label" (click)="cancel()">{{popupObtainedInfo.cancelButtonLabel |
+      uppercase}}</button>
+    <button type="button" class="btn pink-color-label" (click)="submit()">{{popupObtainedInfo.okButtonLabel |
+      uppercase}}</button>
+  </div>
+</ng-container>

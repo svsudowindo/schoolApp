@@ -2,7 +2,7 @@
   <i class="material-icons m-l-20 app-color-pink">
     arrow_back
   </i>
-  <div class="d-flex m-l-20 m-t-15">
+  <div class="d-flex m-l-20 m-t-15" >
     <p class="font-size-16 font-weight-500 color-black">
       Add Courses
     </p>
@@ -17,7 +17,10 @@
   </div>
   <ng-container *ngFor="let course of courses; let i = index">
     <div class="card m-t-30">
-      <div class="card-header font-size-18">Add Course Details {{i+1}} </div>
+      <div class="card-header font-size-18">
+        <span>Add Course Details {{i+1}}</span>
+        <span class="fa fa-times m-t-5 pointer float-right" aria-hidden="true" (click)="removeCourse(i)"></span>
+      </div>
       <div class="card-body">
         <form class="row">
           <div class="form-group col-md-6">

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PopupService } from '../../../shared/components/componentsAsService/popup/popup.service';
+import { POPUP, DIALOG_TYPE, CLICK_STATUS } from '../../../shared/constants/popup-enum';
+import { Router } from '@angular/router';
 
 class CourseModel {
   courseName: string;
@@ -17,7 +20,8 @@ class CourseModel {
 })
 export class CourseSubjectConfigComponent implements OnInit {
   courses: CourseModel[] = [];
-  constructor() { }
+  constructor(private _popupService: PopupService,
+    private _router: Router) { }
 
   ngOnInit() {
     this.courses.push(new CourseModel('', '', ''));
@@ -25,5 +29,24 @@ export class CourseSubjectConfigComponent implements OnInit {
 
   addAnotherCourse() {
     this.courses.push(new CourseModel('', '', ''));
+  }
+  removeCourse(index) {
+    this._popupService.openModal({
+      dialog_type: DIALOG_TYPE.CONFIMATION_DIALOG,
+      type: POPUP.SUCCESS,
+      title: 'Status',
+      message: 'Course Removed Successfully',
+      okButtonLabel: 'YES',
+      cancelButtonLabel: 'NO'
+    }).then(res => {
+      if (res === CLICK_STATUS.SUBMIT_BUTTON) {
+        this.courses.splice(index, 1);
+      } else {
+      }
+    });
+  }
+
+  navigateToDashboard() {
+    this._router.navigate(['dashboard']);
   }
 }
