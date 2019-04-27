@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonRequestService } from '../../../shared/services/common-request.service';
 import { RequestEnums } from '../../../shared/constants/request-enums';
+import { GlobalVariables } from '../../../shared/services/common/globalVariables';
+import Utils from 'src/app/shared/services/common/utils';
 enum YEARS {
   FIRST = 'firstYear',
   SECOND = 'secondYear',
@@ -15,38 +17,7 @@ enum YEARS {
 })
 
 export class CourseDetailsComponent implements OnInit {
-  subjects = [
-    {
-      "subjectName": "Mechanical Engineering",
-      "subjectCode": "MECH",
-      "subjectDescription": "Mechanical Engineering Description"
-    },
-    {
-      "subjectName": "MBA",
-      "subjectCode": "MBA",
-      "subjectDescription": "MBA Description"
-    },
-    {
-      "subjectName": "Accounts",
-      "subjectCode": "ACC",
-      "subjectDescription": "Accounts Description"
-    },
-    {
-      "subjectName": "Mechanical Engineering",
-      "subjectCode": "MECH",
-      "subjectDescription": "Mechanical Engineering Description"
-    },
-    {
-      "subjectName": "MBA",
-      "subjectCode": "MBA",
-      "subjectDescription": "MBA Description"
-    },
-    {
-      "subjectName": "Accounts",
-      "subjectCode": "ACC",
-      "subjectDescription": "Accounts Description"
-    }
-  ];
+  public subjects ;
   YEARS_ENUM = YEARS;
   isActiveYears = {
     firstYear: true,
@@ -55,12 +26,15 @@ export class CourseDetailsComponent implements OnInit {
     fourthYear: false
   };
   constructor(private _router: Router,
-    private _commonRequestServ: CommonRequestService) { }
+    private _commonRequestServ: CommonRequestService,
+    public _globalVariable: GlobalVariables) { }
   ngOnInit() {
     this.getCardsInfo();
   }
 
   getCardsInfo() {
+  this.subjects = this._globalVariable.getParameterData('course').year;
+  Utils.log('subjects   ::::::  ' + JSON.stringify(this.subjects));
     // this._commonRequestServ.request(RequestEnums.SUBJECTS_LIST).subscribe(res => {
     //   // Utils.log(res);
     //   this.subjects = res;
@@ -71,6 +45,7 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   yearChange(selectedYear) {
+    alert(JSON.stringify(selectedYear));
     const keysOfYears = Object.keys(this.isActiveYears);
     for (let i = 0; i < keysOfYears.length ; i++) {
       if (selectedYear === keysOfYears[i]) {

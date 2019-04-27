@@ -16,6 +16,12 @@ export const RequestEnums = {
         path: '/assets/modals/subjects.json',
         keys: ['id'],
         values: []
+    },
+    GET_COURSES_LIST: {
+        type: 'GET',
+        path: '/api/v1/courses',
+        keys: [],
+        values: []
     }
 };
 
