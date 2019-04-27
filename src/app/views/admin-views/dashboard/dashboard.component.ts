@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoaderService } from '../../../shared/components/componentsAsService/loader/loader.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,7 @@ import { LoaderService } from '../../../shared/components/componentsAsService/lo
 })
 export class DashboardComponent implements OnInit {
   searchKey: string;
-  constructor() { }
+  constructor(private _router: Router) { }
 
   ngOnInit() {
   }
@@ -16,5 +17,9 @@ export class DashboardComponent implements OnInit {
   }
   searchCourse(searchValue) {
     this.searchKey = searchValue;
+  }
+
+  navigateToAddCourse() {
+    this._router.navigate(['add-course']);
   }
 }

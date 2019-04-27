@@ -70,6 +70,10 @@ const routes: Routes = [
       {
         path: 'course-subject',
         loadChildren: './views/admin-views/course-subject-config/course-subject-config.module#CourseSubjectConfigModule'
+      },
+      {
+        path: 'add-course',
+        loadChildren: './views/admin-views/course-subject-config/course-subject-config.module#CourseSubjectConfigModule'
       }
     ]
   },
