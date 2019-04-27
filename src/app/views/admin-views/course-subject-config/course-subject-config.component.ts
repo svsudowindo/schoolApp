@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PopupService } from '../../../shared/components/componentsAsService/popup/popup.service';
+import { POPUP } from '../../../shared/constants/popup-enum';
 
 class CourseModel {
   courseName: string;
@@ -17,7 +19,7 @@ class CourseModel {
 })
 export class CourseSubjectConfigComponent implements OnInit {
   courses: CourseModel[] = [];
-  constructor() { }
+  constructor(private _popupService: PopupService) { }
 
   ngOnInit() {
     this.courses.push(new CourseModel('', '', ''));
@@ -25,5 +27,14 @@ export class CourseSubjectConfigComponent implements OnInit {
 
   addAnotherCourse() {
     this.courses.push(new CourseModel('', '', ''));
+  }
+  removeCourse(index) {
+    this.courses.splice(index, 1);
+    this._popupService.openModal({
+      type: POPUP.SUCCESS,
+      message: 'Course Removed Successfully',
+      okButtonLabel: 'ok',
+      title: 'Status'
+    });
   }
 }
