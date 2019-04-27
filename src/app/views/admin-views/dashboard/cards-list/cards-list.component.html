@@ -1,11 +1,11 @@
 <!-- cards -->
-<div class="d-flex flex-wrap m-l-50 pointer" >
-  <ng-container *ngFor="let subject of subjects" >
-    <div class="card subjects  m-t-25 " style="width: 18rem;" (click)="navigateToCourseDetails(subject)">
+<div class="d-flex flex-wrap m-l-50 pointer" (click)="navigateToCourseDetails()">
+  <ng-container *ngFor="let course of courses">
+    <div class="card subjects  m-t-25 " style="width: 18rem;">
       <img class="rounded" height="100" width="100" src="../../../../assets/icons/profile.jpg" alt="Card image cap">
       <div class="card-body">
-        <p class="card-title">{{subject.courseName}}</p>
-        <p class="card-text">{{subject.description}}</p>
+        <p class="card-title">{{course.courseName}}</p>
+        <p class="card-text">{{course.courseDescription}}</p>
       </div>
     </div>
     <div class="col-md-1">

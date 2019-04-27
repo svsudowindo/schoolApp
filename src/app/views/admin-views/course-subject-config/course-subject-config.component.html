@@ -1,0 +1,46 @@
+<div class="d-flex navigation-header align-items-center pointer" (click)="navigateToDashboard()">
+  <i class="material-icons m-l-20 app-color-pink">
+    arrow_back
+  </i>
+  <div class="d-flex m-l-20 m-t-15">
+    <p class="font-size-16 font-weight-500 color-black">
+      Add Courses
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <div align="right" class="m-b-10">
+    <button type="button" class="btn pink-color-label" (click)="addAnotherCourse()">
+      <span class="fa fa-plus p-r-10" aria-hidden="true"></span>Add Another Course
+    </button>
+  </div>
+  <ng-container *ngFor="let course of courses; let i = index">
+    <div class="card m-t-30">
+      <div class="card-header font-size-18">Add Course Details {{i+1}} </div>
+      <div class="card-body">
+        <form class="row">
+          <div class="form-group col-md-6">
+            <label for="courseName">Course Name</label>
+            <input type="text" class="form-control" id="courseName" placeholder="Enter Course Name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="courseCode">Course Code</label>
+            <input type="text" class="form-control" id="courseCode" placeholder="Course Code">
+          </div>
+          <div class="form-group col-md-12">
+            <label for="courseDesc">Course Description</label>
+            <textarea class="form-control" id="courseDesc" placeholder="Course Description" rows="2"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <div align="right">
+          <button type="button" class="btn pink-color-label">
+            <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save Course
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

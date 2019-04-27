@@ -4,11 +4,16 @@
       <div class="d-flex flex-wrap">
         <img src="../../../../assets/icons/profile.jpg" class="rounded-circle">
         <div class="w-550 m-l-40">
-          <app-search></app-search>
+          <app-search (searchCourse)="searchCourse($event)"></app-search>
         </div>
         <div class="m-t-10 m-l-50">
           <button type="button" class="btn pink-color-label">
             <span class="fa fa-filter p-r-10" aria-hidden="true"></span>Filter
+          </button>
+        </div>
+        <div class="m-t-10 m-l-50">
+          <button type="button" class="btn pink-color-label" (click)="navigateToAddCourse()">
+            <span class="fa fa-plus p-r-10" aria-hidden="true"></span>Add Course
           </button>
         </div>
         <div class="d-flex ml-auto">
@@ -18,7 +23,7 @@
       </div>
 
       <!-- cards -->
-      <app-cards-list></app-cards-list>
+      <app-cards-list [searchKey]="searchKey"></app-cards-list>
     </div>
   </div>
 </div>

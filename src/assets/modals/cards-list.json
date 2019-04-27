@@ -1,32 +1,32 @@
 [
     {
-        "subjectName": "Mechanical Engineering",
-        "subjectCode": "MECH",
-        "subjectDescription": "Mechanical Engineering Description"
+        "courseName": "Mechanical Engineering",
+        "courseCode": "MECH",
+        "courseDescription": "Mechanical Engineering Description"
     },
     {
-        "subjectName": "MBA",
-        "subjectCode": "MBA",
-        "subjectDescription": "MBA Description"
+        "courseName": "MBA",
+        "courseCode": "MBA",
+        "courseDescription": "MBA Description"
     },
     {
-        "subjectName": "Accounts",
-        "subjectCode": "ACC",
-        "subjectDescription": "Accounts Description"
+        "courseName": "Accounts",
+        "courseCode": "ACC",
+        "courseDescription": "Accounts Description"
     },
     {
-        "subjectName": "Mechanical Engineering",
-        "subjectCode": "MECH",
-        "subjectDescription": "Mechanical Engineering Description"
+        "courseName": "Mechanical Engineering",
+        "courseCode": "MECH",
+        "courseDescription": "Mechanical Engineering Description"
     },
     {
-        "subjectName": "MBA",
-        "subjectCode": "MBA",
-        "subjectDescription": "MBA Description"
+        "courseName": "MBA",
+        "courseCode": "MBA",
+        "courseDescription": "MBA Description"
     },
     {
-        "subjectName": "Accounts",
-        "subjectCode": "ACC",
-        "subjectDescription": "Accounts Description"
+        "courseName": "Accounts",
+        "courseCode": "ACC",
+        "courseDescription": "Accounts Description"
     }
 ]
