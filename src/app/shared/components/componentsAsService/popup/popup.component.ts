@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { PopupInfoService, IDataInfo } from './popup-info.service';
-import { POPUP } from '../../../constants/popup-enum';
+import { POPUP, CLICK_STATUS, DIALOG_TYPE } from '../../../constants/popup-enum';
 
 @Component({
   selector: 'app-popup',
@@ -12,6 +12,7 @@ export class PopupComponent implements OnInit {
 
   popupObtainedInfo: IDataInfo;
   POPUPENUM = POPUP;
+  DIALOG_TYPE = DIALOG_TYPE;
   constructor(public activeModal: NgbActiveModal, private _popupInfoService: PopupInfoService) {
     this.popupObtainedInfo = this._popupInfoService.data;
   }
@@ -20,6 +21,10 @@ export class PopupComponent implements OnInit {
   }
 
   submit() {
-    this.activeModal.close('from submit');
+    this.activeModal.close(CLICK_STATUS.SUBMIT_BUTTON);
+  }
+
+  cancel() {
+    this.activeModal.close(CLICK_STATUS.CANCEL_BUTTON);
   }
 }
