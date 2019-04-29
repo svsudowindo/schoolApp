@@ -34,6 +34,7 @@ export class BaseClass implements OnInit {
     this.routerForBaseClass.navigateByUrl(pageName);
   }
 
+  // to validate either formArray, formControl, FormGroup.
   getErrorMessage(formGroup, validation_messages, validation_item): string {
     let message = '';
     const keys = Object.keys(formGroup.controls);
@@ -51,8 +52,8 @@ export class BaseClass implements OnInit {
     }
     return message;
   }
-
-  public validateFormArray(formControl: FormArray, validation_messages, validation_item) {
+  // to validate form array
+  private validateFormArray(formControl: FormArray, validation_messages, validation_item) {
     let message = '';
     for (let i = 0; i < formControl.controls.length; i++) {
       message = this.getErrorMessage(formControl['controls'][i], validation_messages, validation_item);
@@ -63,13 +64,15 @@ export class BaseClass implements OnInit {
     return message;
   }
 
-  getControlErrorMessage(control, validation_messages?: any, validation_item?: any) {
+  // returns the error particular message configured in form.
+  private getControlErrorMessage(control, validation_messages?: any, validation_item?: any) {
     for (let i = 0; i < validation_messages[validation_item].length; i++) {
       if (control.hasError(validation_messages[validation_item][i].type)) {
         return validation_messages[validation_item][i].message;
       }
     }
   }
+
   findInvalidControls(formObject) {
     const invalid = [];
     const controls = formObject.controls;
