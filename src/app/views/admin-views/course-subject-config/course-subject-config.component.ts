@@ -1,33 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { PopupService } from '../../../shared/components/componentsAsService/popup/popup.service';
 import { POPUP, DIALOG_TYPE, CLICK_STATUS } from '../../../shared/constants/popup-enum';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { BaseClass } from '../../../shared/services/common/baseClass';
 
-class CourseModel {
-  courseName: string;
-  courseCode: string;
-  courseDescription: string;
-  constructor(name, code, desc) {
-    this.courseName = name;
-    this.courseCode = code;
-    this.courseDescription = desc;
-  }
-}
 @Component({
   selector: 'app-course-subject-config',
   templateUrl: './course-subject-config.component.html',
   styleUrls: ['./course-subject-config.component.scss']
 })
-export class CourseSubjectConfigComponent implements OnInit {
-  courses: CourseModel[] = [];
+export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
   courseForm: FormGroup;
+  public validation_messages = {
+    'courseName': [
+      { type: 'required', message: 'Please enter firstname' }
+    ],
+    'courseCode': [
+      { type: 'required', message: 'Please enter courseCode' }
+    ],
+    'courseDescription': [
+      { type: 'required', message: 'Please enter courseDescription' }
+    ]
+  };
   constructor(private _popupService: PopupService,
     private _router: Router,
-    private _formBuilder: FormBuilder) { }
+    private _formBuilder: FormBuilder,
+    public _injector: Injector) {
+      super(_injector);
+    }
 
   ngOnInit() {
-    this.courses.push(new CourseModel('', '', ''));
     this.createForm();
   }
   createForm() {
@@ -51,14 +54,12 @@ export class CourseSubjectConfigComponent implements OnInit {
   }
   // adding new form group into an array
   addFormGroupToArray() {
+    console.log(this.courseForm);
     (<FormArray>this.courseForm.get('courses')).push(this.createCourseFormGroup());
   }
-
   // on clicking add Course button
   addAnotherCourse() {
-    this.courses.push(new CourseModel('', '', ''));
     this.addFormGroupToArray();
-    console.log(this.courseForm.get('courses'));
   }
 
   // remove course
@@ -72,7 +73,6 @@ export class CourseSubjectConfigComponent implements OnInit {
       cancelButtonLabel: 'NO'
     }).then(res => {
       if (res === CLICK_STATUS.SUBMIT_BUTTON) {
-        this.courses.splice(index, 1);
         this.removeFormGroupFromArray(index);
       } else {
       }

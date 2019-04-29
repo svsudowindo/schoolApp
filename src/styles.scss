@@ -11,3 +11,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: transparent;
     border: none;
 }
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.error {
+    color: #dc3545;
+    font-size: 80%
+}
