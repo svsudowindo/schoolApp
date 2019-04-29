@@ -21,7 +21,7 @@
       </button>
     </div>
     <div formArrayName="courses">
-      <ng-container *ngFor="let course of courseForm.get('courses').controls; let i = index">
+      <ng-container *ngFor="let course of courseForm.get('courses')['controls']; let i = index">
         <div class="card m-t-30">
           <div class="card-header font-size-18">
             <span>Add Course Details {{i+1}}</span>
@@ -34,7 +34,7 @@
                 <input type="text" class="form-control" id="courseName" placeholder="Enter Course Name" formControlName="courseName"
                   required>
                 <div class="error" [hidden]="!(courseForm.get('courses').controls[i].invalid && this.courseForm.get('courses').controls[i].get('courseName').touched)">
-                  {{ getErrorMessage(courseForm.get('courses').controls[i], validation_messages, 'courseName') }}
+                  {{ getErrorMessage(courseForm, validation_messages, 'courseName') }}
                 </div>
               </div>
               <div class="form-group col-md-6 min-height-94">
@@ -42,7 +42,7 @@
                 <input type="text" class="form-control" id="courseCode" placeholder="Course Code" formControlName="courseCode"
                   required>
                 <div class="error" [hidden]="!(courseForm.get('courses').controls[i].invalid && this.courseForm.get('courses').controls[i].get('courseCode').touched)">
-                  {{ getErrorMessage(courseForm.get('courses').controls[i], validation_messages, 'courseCode') }}
+                  {{ getErrorMessage(courseForm, validation_messages, 'courseCode') }}
                 </div>
               </div>
               <div class="form-group col-md-12">
@@ -50,7 +50,7 @@
                 <textarea class="form-control" id="courseDesc" placeholder="Course Description" rows="2"
                   formControlName="courseDescription" required></textarea>
                 <div class="error" [hidden]="!(courseForm.get('courses').controls[i].invalid && this.courseForm.get('courses').controls[i].get('courseDescription').touched)">
-                  {{ getErrorMessage(courseForm.get('courses').controls[i], validation_messages, 'courseDescription')
+                  {{ getErrorMessage(courseForm, validation_messages, 'courseDescription')
                   }}
                 </div>
               </div>

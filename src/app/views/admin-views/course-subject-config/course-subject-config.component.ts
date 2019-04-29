@@ -14,13 +14,13 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
   courseForm: FormGroup;
   public validation_messages = {
     'courseName': [
-      { type: 'required', message: 'Please enter firstname' }
+      { type: 'required', message: 'Please Enter course Name' }
     ],
     'courseCode': [
-      { type: 'required', message: 'Please enter courseCode' }
+      { type: 'required', message: 'Please Enter Course Code' }
     ],
     'courseDescription': [
-      { type: 'required', message: 'Please enter courseDescription' }
+      { type: 'required', message: 'Please Enter Course Description' }
     ]
   };
   constructor(private _popupService: PopupService,
