@@ -11,16 +11,18 @@
 <form [formGroup]="courseForm">
   <div class="container">
     <div align="right" class="m-b-10">
-        <button type="button" class="btn pink-color-label m-r-10" (click)="saveAllCourses()">
-            <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save All Courses
-          </button>
+      <span placement="bottom" [ngbTooltip]="(courseForm.invalid) ? 'Please fill all the required course details to save' : 'Save all Courses'">
+        <button type="button" class="btn pink-color-label m-r-10" (click)="saveAllCourses()" [disabled]="courseForm.invalid">
+          <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save All Courses
+        </button>
+      </span>
       <button type="button" class="btn pink-color-label" (click)="addAnotherCourse()">
         <span class="fa fa-plus p-r-10" aria-hidden="true"></span>Add Another Course
       </button>
     </div>
     <div formArrayName="courses">
-      <ng-container *ngFor="let course of courses; let i = index">
-        <div  class="card m-t-30">
+      <ng-container *ngFor="let course of courseForm.get('courses')['controls']; let i = index">
+        <div class="card m-t-30">
           <div class="card-header font-size-18">
             <span>Add Course Details {{i+1}}</span>
             <span class="fa fa-times m-t-5 pointer float-right" aria-hidden="true" (click)="removeCourse(i)"></span>
@@ -29,16 +31,28 @@
             <form [formGroupName]="i" class="row">
               <div class="form-group col-md-6">
                 <label for="courseName">Course Name</label>
-                <input type="text" class="form-control" id="courseName" placeholder="Enter Course Name" formControlName="courseName">
+                <input type="text" class="form-control" id="courseName" placeholder="Enter Course Name" formControlName="courseName"
+                  required>
+                <div class="error" [hidden]="!(courseForm.get('courses').controls[i].invalid && this.courseForm.get('courses').controls[i].get('courseName').touched)">
+                  {{ getErrorMessage(courseForm, validation_messages, 'courseName') }}
+                </div>
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 min-height-94">
                 <label for="courseCode">Course Code</label>
-                <input type="text" class="form-control" id="courseCode" placeholder="Course Code" formControlName="courseCode">
+                <input type="text" class="form-control" id="courseCode" placeholder="Course Code" formControlName="courseCode"
+                  required>
+                <div class="error" [hidden]="!(courseForm.get('courses').controls[i].invalid && this.courseForm.get('courses').controls[i].get('courseCode').touched)">
+                  {{ getErrorMessage(courseForm, validation_messages, 'courseCode') }}
+                </div>
               </div>
               <div class="form-group col-md-12">
                 <label for="courseDesc">Course Description</label>
                 <textarea class="form-control" id="courseDesc" placeholder="Course Description" rows="2"
-                  formControlName="courseDescription"></textarea>
+                  formControlName="courseDescription" required></textarea>
+                <div class="error" [hidden]="!(courseForm.get('courses').controls[i].invalid && this.courseForm.get('courses').controls[i].get('courseDescription').touched)">
+                  {{ getErrorMessage(courseForm, validation_messages, 'courseDescription')
+                  }}
+                </div>
               </div>
             </form>
           </div>
@@ -47,9 +61,11 @@
               <button type="button" class="btn pink-color-label m-r-10">
                 <span class="fa fa-plus p-r-10" aria-hidden="true"></span>Add Subjects
               </button>
-              <button type="button" class="btn pink-color-label" (click)="saveIndividualCourse(i)">
-                <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save Course
-              </button>
+              <span placement="bottom" [ngbTooltip]="courseForm.get('courses').controls[i].invalid ? 'Please fill all the required fields of course details ' + (i+1) + 'to save' : 'Save Course Details' + (i+1)">
+                <button type="button" class="btn pink-color-label" (click)="saveIndividualCourse(i)" [disabled]="courseForm.get('courses').controls[i].invalid">
+                  <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save Course
+                </button>
+              </span>
             </div>
           </div>
         </div>
