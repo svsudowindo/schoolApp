@@ -12,6 +12,24 @@ import { BaseClass } from '../../../shared/services/common/baseClass';
 })
 export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
   courseForm: FormGroup;
+  yearsArr = [
+    {
+      yearId: 1,
+      displayYear: 1
+    },
+    {
+      yearId: 2,
+      displayYear: 2
+    },
+    {
+      yearId: 3,
+      displayYear: 3
+    },
+    {
+      yearId: 4,
+      displayYear: 4
+    }
+  ];
   public validation_messages = {
     'courseName': [
       { type: 'required', message: 'Please Enter course Name' }
@@ -21,14 +39,17 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
     ],
     'courseDescription': [
       { type: 'required', message: 'Please Enter Course Description' }
+    ],
+    'courseYear': [
+      { type: 'required', message: 'Please Select Year' }
     ]
   };
   constructor(private _popupService: PopupService,
     private _router: Router,
     private _formBuilder: FormBuilder,
     public _injector: Injector) {
-      super(_injector);
-    }
+    super(_injector);
+  }
 
   ngOnInit() {
     this.createForm();
@@ -44,7 +65,8 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
     return this._formBuilder.group({
       courseName: ['', Validators.compose([Validators.required])],
       courseCode: ['', Validators.compose([Validators.required])],
-      courseDescription: ['', Validators.compose([Validators.required])]
+      courseDescription: ['', Validators.compose([Validators.required])],
+      courseYear: [1, Validators.compose([Validators.required])]
     });
   }
 
