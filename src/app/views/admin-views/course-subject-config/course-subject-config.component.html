@@ -29,7 +29,7 @@
           </div>
           <div class="card-body">
             <form [formGroupName]="i" class="row">
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-4 min-height-94">
                 <label for="courseName">Course Name</label>
                 <input type="text" class="form-control" id="courseName" placeholder="Enter Course Name" formControlName="courseName"
                   required>
@@ -37,12 +37,23 @@
                   {{ getErrorMessage(courseForm, validation_messages, 'courseName') }}
                 </div>
               </div>
-              <div class="form-group col-md-6 min-height-94">
+              <div class="form-group col-md-4 min-height-94">
                 <label for="courseCode">Course Code</label>
                 <input type="text" class="form-control" id="courseCode" placeholder="Course Code" formControlName="courseCode"
                   required>
                 <div class="error" [hidden]="!(courseForm.get('courses').controls[i].invalid && this.courseForm.get('courses').controls[i].get('courseCode').touched)">
                   {{ getErrorMessage(courseForm, validation_messages, 'courseCode') }}
+                </div>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select id="inputState" class="form-control" formControlName="courseYear">
+                  <ng-container *ngFor="let year of yearsArr">
+                    <option [ngValue]="year.yearId">{{year.displayYear}}</option>
+                  </ng-container>
+                </select>
+                <div class="error" [hidden]="!(courseForm.get('courses').controls[i].invalid && this.courseForm.get('courses').controls[i].get('courseYear').touched)">
+                  {{ getErrorMessage(courseForm, validation_messages, 'courseYear') }}
                 </div>
               </div>
               <div class="form-group col-md-12">
