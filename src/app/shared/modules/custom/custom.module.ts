@@ -11,6 +11,7 @@ import { LoaderModule } from '../../components/componentsAsService/loader/loader
 import { LogoComponent } from '../../components/logo/logo.component';
 import { ReusableAuthFormsComponent } from '../../components/reusable-auth-forms/reusable-auth-forms.component';
 import { PredefinedModule } from '../predefined/predefined.module';
+import { NoAcessComponent } from '../../components/no-acess/no-acess.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PredefinedModule } from '../predefined/predefined.module';
     ResponseMessageComponent,
     SearchComponent,
     LogoComponent,
-    ReusableAuthFormsComponent
+    ReusableAuthFormsComponent,
+    NoAcessComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { PredefinedModule } from '../predefined/predefined.module';
     ResponseMessageComponent,
     SearchComponent,
     LogoComponent,
-    ReusableAuthFormsComponent
+    ReusableAuthFormsComponent,
+    NoAcessComponent
   ]
 })
 export class CustomModule { }

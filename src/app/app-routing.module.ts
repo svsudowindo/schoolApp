@@ -68,12 +68,12 @@ const routes: Routes = [
         loadChildren: './views/admin-views/course-details/course-details.module#CourseDetailsModule'
       },
       {
-        path: 'course-subject',
+        path: 'add-course',
         loadChildren: './views/admin-views/course-subject-config/course-subject-config.module#CourseSubjectConfigModule'
       },
       {
-        path: 'add-course',
-        loadChildren: './views/admin-views/course-subject-config/course-subject-config.module#CourseSubjectConfigModule'
+        path: 'add-subjects',
+        loadChildren: './views/admin-views/subjects-config/subjects-config.module#SubjectsConfigModule'
       }
     ]
   },

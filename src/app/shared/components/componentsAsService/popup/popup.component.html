@@ -22,6 +22,10 @@
   <div class="modal-footer">
     <button type="button" class="btn pink-color-label" (click)="submit()">{{popupObtainedInfo.okButtonLabel |
       uppercase}}</button>
+      <ng-container *ngIf="popupObtainedInfo.fromLocation !== undefined">
+          <button type="button" class="btn pink-color-label" (click)="navigateToSpecified(popupObtainedInfo.fromLocation.navigation)">{{popupObtainedInfo.fromLocation.label |
+              uppercase}}</button>
+      </ng-container>
   </div>
 </ng-container>
 <ng-container *ngIf="popupObtainedInfo.dialog_type === DIALOG_TYPE.CONFIMATION_DIALOG">
