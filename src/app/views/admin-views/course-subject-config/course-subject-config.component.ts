@@ -1,6 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { PopupService } from '../../../shared/components/componentsAsService/popup/popup.service';
-import { POPUP, DIALOG_TYPE, CLICK_STATUS } from '../../../shared/constants/popup-enum';
+import { POPUP, DIALOG_TYPE, CLICK_STATUS, FROM_LOCATIONS } from '../../../shared/constants/popup-enum';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { BaseClass } from '../../../shared/services/common/baseClass';
@@ -109,6 +109,21 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
   saveIndividualCourse(index) {
     console.log(index);
     console.log(this.courseForm.get('courses').value[index]);
+    // after successfull service call
+    this._popupService.openModal({
+      dialog_type: DIALOG_TYPE.ALERT_DIALOG,
+      title: 'Success',
+      type: POPUP.SUCCESS,
+      message: 'Course saved successfully',
+      okButtonLabel: 'OK',
+      fromLocation: {
+        locationName: FROM_LOCATIONS.SAVE_COURSE,
+        label: 'Add Subjects',
+        navigation: ['add-subjects', 1]
+      }
+    }).then(res => {
+      console.log(res);
+    });
   }
   navigateToDashboard() {
     this._router.navigate(['dashboard']);
