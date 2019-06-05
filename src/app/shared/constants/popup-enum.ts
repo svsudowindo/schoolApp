@@ -10,5 +10,10 @@ export enum DIALOG_TYPE {
 
 export enum CLICK_STATUS {
     SUBMIT_BUTTON = 'submit',
-    CANCEL_BUTTON = 'cancel'
+    CANCEL_BUTTON = 'cancel',
+    AUTO_CLOSE = 'auto_close'
+}
+
+export enum FROM_LOCATIONS {
+    SAVE_COURSE = 'SAVE_COURSE'
 }

@@ -8,6 +8,11 @@ export interface IDataInfo {
   message?: string;
   okButtonLabel?: string;
   cancelButtonLabel?: string;
+  fromLocation?: {
+    locationName?: string,
+    label?: string,
+    navigation?: any
+  };
   // any other data if needed
 }
 @Injectable({
