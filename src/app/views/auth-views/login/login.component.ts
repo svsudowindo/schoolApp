@@ -29,8 +29,8 @@ export class LoginComponent extends BaseClass implements OnInit {
       id: 'email',
       required: true,
       formControlName: 'email',
-      validators: [VALIDATION_PATTERNS.REQUIRED, VALIDATION_PATTERNS.EMAIL],
-      validatorsTypes: [VALIDATION_TYPES.REQUIRED, VALIDATION_TYPES.PATTERN],
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
       validatorMessages: ['Please enter the email','Please enter the valid email'],
       isInputGrouped: false
     },
@@ -110,9 +110,9 @@ export class LoginComponent extends BaseClass implements OnInit {
   submit(loginData) {
     console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa   ::::: " + JSON.stringify(loginData) );
     
-    this._loginService.login(loginData).subscribe((loginResponse) =>{
+    this._loginService.login(RequestEnums.LOGIN,loginData).subscribe((loginResponse) =>{
       Utils.log('loginResponse    ::::::  ' + JSON.stringify(loginResponse));
-      this.route.navigate(['dashboard']);
+      //this.route.navigate(['dashboard']);
     },(error) =>{
       Utils.log('login error Response    ::::::  ' + JSON.stringify(error));
     });

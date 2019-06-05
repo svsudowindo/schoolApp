@@ -1,30 +1,31 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/Rx';
-import { Subject } from 'rxjs/Subject';
+import { CommonRequestService } from '../../../shared/services/common-request.service';
 
 @Injectable()
 export class LoginService {
 
-  constructor(public _fireAuth: AngularFireAuth) { }
+  constructor(private _commonRequestService: CommonRequestService) { }
 
-  login(loginData): Observable<any> {
-    return this.fromfirebaseAuthPromise(this._fireAuth.auth.signInWithEmailAndPassword(loginData.email, loginData.password));
+  login(requestObject,loginData) {
+    let header =new HttpHeaders({Authorization:'Basic'+btoa(loginData.email+':'+loginData.password)});
+   // header.append('Authorization','Basic'+btoa(loginData.email+':'+loginData.password));
+    return this._commonRequestService.request(requestObject,header);
   }
 
-  fromfirebaseAuthPromise(promise): Observable<any> {
-    const subject = new Subject<any>();
-    promise.then(
-      res => {
-        subject.next(res);
-        subject.complete();
-      },
-      err => {
-        subject.error(err);
-        subject.complete();
-      });
-    return subject.asObservable();
-  }
+  // fromfirebaseAuthPromise(promise): Observable<any> {
+  //   const subject = new Subject<any>();
+  //   promise.then(
+  //     res => {
+  //       subject.next(res);
+  //       subject.complete();
+  //     },
+  //     err => {
+  //       subject.error(err);
+  //       subject.complete();
+  //     });
+  //   return subject.asObservable();
+  // }
 
 
 }
