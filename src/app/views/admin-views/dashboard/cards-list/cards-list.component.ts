@@ -26,9 +26,10 @@ export class CardsListComponent implements OnInit, OnChanges {
 
 
   getCardsInfo() {
-    this._commonRequestServ.request(RequestEnums.CARDS_LIST).subscribe(res => {
-      Utils.log(JSON.stringify(this.courses));
+    this._commonRequestServ.request(RequestEnums.GET_COURSES_LIST).subscribe(res => {
       this.courses = res;
+      Utils.log('aaaaaaaaaaaaa' + JSON.stringify(this.courses));
+     
     });
   }
 
