@@ -49,7 +49,6 @@ export class ForgotPasswordComponent implements OnInit {
       hasDescription: false,
       description: '',
       navigationPath: '/login'
-      
     }
   ];
   constructor() { }

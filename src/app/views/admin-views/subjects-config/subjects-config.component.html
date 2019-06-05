@@ -1,3 +1,75 @@
-<p>
-  subjects-config works!
-</p>
+<div class="d-flex navigation-header align-items-center pointer" (click)="navigateToDashboard()">
+    <i class="material-icons m-l-20 app-color-pink">
+      arrow_back
+    </i>
+    <div class="d-flex m-l-20 m-t-15">
+      <p class="font-size-16 font-weight-500 color-black">
+        Add Subjects
+      </p>
+    </div>
+  </div>
+  <form [formGroup]="subjectsForm">
+    <div class="container">
+      <div align="right" class="m-b-10">
+        <span placement="bottom" [ngbTooltip]="(subjectsForm.invalid) ? 'Please fill all the required subject details to save' : 'Save all Subjects'">
+          <button type="button" class="btn pink-color-label m-r-10" (click)="saveAllSubjects()" [disabled]="subjectsForm.invalid">
+            <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save All Subjects
+          </button>
+        </span>
+        <button type="button" class="btn pink-color-label" (click)="addAnotherCourse()">
+          <span class="fa fa-plus p-r-10" aria-hidden="true"></span>Add Another Subject
+        </button>
+      </div>
+      <div formArrayName="subjects">
+        <ng-container *ngFor="let course of subjectsForm.get('subjects')['controls']; let i = index">
+          <div class="card m-t-30">
+            <div class="card-header font-size-18">
+              <span>Add Course Details {{i+1}}</span>
+              <span class="fa fa-times m-t-5 pointer float-right" aria-hidden="true" (click)="removeCourse(i)"></span>
+            </div>
+            <div class="card-body">
+              <form [formGroupName]="i" class="row">
+                <div class="form-group col-md-4 min-height-94">
+                  <label for="courseName">Course Name</label>
+                  <input type="text" class="form-control" id="courseName" placeholder="Enter Subject Name" formControlName="subjectName"
+                    required>
+                  <div class="error" [hidden]="!(subjectsForm.get('subjects').controls[i].invalid && this.subjectsForm.get('subjects').controls[i].get('subjectName').touched)">
+                    {{ getErrorMessage(subjectsForm, validation_messages, 'subjectName') }}
+                  </div>
+                </div>
+                <div class="form-group col-md-4 min-height-94">
+                  <label for="courseCode">Course Code</label>
+                  <input type="text" class="form-control" id="courseCode" placeholder="Course Code" formControlName="subjectCode"
+                    required>
+                  <div class="error" [hidden]="!(subjectsForm.get('subjects').controls[i].invalid && this.subjectsForm.get('subjects').controls[i].get('subjectCode').touched)">
+                    {{ getErrorMessage(subjectsForm, validation_messages, 'subjectCode') }}
+                  </div>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="subjectDesc">Subject Description</label>
+                  <textarea class="form-control" id="subjectDesc" placeholder="Subject Description" rows="2"
+                    formControlName="subjectDescription" required></textarea>
+                  <div class="error" [hidden]="!(subjectsForm.get('subjects').controls[i].invalid && this.subjectsForm.get('subjects').controls[i].get('subjectDescription').touched)">
+                    {{ getErrorMessage(subjectsForm, validation_messages, 'subjectDescription')
+                    }}
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <div align="right">
+                <!-- <button type="button" class="btn pink-color-label m-r-10">
+                  <span class="fa fa-plus p-r-10" aria-hidden="true"></span>Add Subjects
+                </button> -->
+                <span placement="bottom" [ngbTooltip]="subjectsForm.get('subjects').controls[i].invalid ? 'Please fill all the required fields of course details ' + (i+1) + 'to save' : 'Save Course Details' + (i+1)">
+                  <button type="button" class="btn pink-color-label" (click)="saveIndividualSubject(i)" [disabled]="subjectsForm.get('subjects').controls[i].invalid">
+                    <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save Course
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </form>
