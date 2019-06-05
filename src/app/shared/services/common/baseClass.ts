@@ -38,16 +38,21 @@ export class BaseClass implements OnInit {
   getErrorMessage(formGroup, validation_messages, validation_item): string {
     let message = '';
     const keys = Object.keys(formGroup.controls);
-    for (let i = 0; i < keys.length; i++) {
-      const control = formGroup.get(keys[i]);
+    const index = keys.indexOf(validation_item);
+    if (index !== -1) {
+      const control = formGroup.get(keys[index]);
       if (control instanceof FormControl) {
         message = this.getControlErrorMessage(control, validation_messages, validation_item);
-        break;
-      } else if (control instanceof FormGroup) {
-        this.getErrorMessage(control, validation_messages, validation_item);
-      } else if (control instanceof FormArray) {
-        message = this.validateFormArray(control, validation_messages, validation_item);
-        break;
+      }
+    } else {
+      for (let i = 0; i < keys.length; i++) {
+        const control = formGroup.get(keys[i]);
+        if (control instanceof FormGroup) {
+          this.getErrorMessage(control, validation_messages, validation_item);
+        } else if (control instanceof FormArray) {
+          message = this.validateFormArray(control, validation_messages, validation_item);
+          break;
+        }
       }
     }
     return message;
