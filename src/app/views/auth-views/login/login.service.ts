@@ -8,24 +8,9 @@ export class LoginService {
   constructor(private _commonRequestService: CommonRequestService) { }
 
   login(requestObject,loginData) {
-    let header =new HttpHeaders({Authorization:'Basic'+btoa(loginData.email+':'+loginData.password)});
-   // header.append('Authorization','Basic'+btoa(loginData.email+':'+loginData.password));
-    return this._commonRequestService.request(requestObject,header);
+    let header =new HttpHeaders({Authorization: 'Basic ' + btoa(loginData.email + ':' + loginData.password)});
+    return this._commonRequestService.request(requestObject,null,null,header);
   }
-
-  // fromfirebaseAuthPromise(promise): Observable<any> {
-  //   const subject = new Subject<any>();
-  //   promise.then(
-  //     res => {
-  //       subject.next(res);
-  //       subject.complete();
-  //     },
-  //     err => {
-  //       subject.error(err);
-  //       subject.complete();
-  //     });
-  //   return subject.asObservable();
-  // }
 
 
 }

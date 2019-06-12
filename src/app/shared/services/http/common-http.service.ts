@@ -108,6 +108,8 @@ export class CommonHttpService {
         customHeaders?: HttpHeaders): Observable<any> {
         const requestOptions = customHeaders ? { headers: customHeaders } : {};
         requestOptions['params'] = params;
+        
+      //  requestOptions['observe'] = 'response';
         switch (requestObj.type) {
             case 'GET': {
                 return this.get(requestObj.path, requestOptions);

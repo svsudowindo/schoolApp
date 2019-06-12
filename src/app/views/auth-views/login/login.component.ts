@@ -13,6 +13,7 @@ import { FORM_TYPES, VALIDATION_PATTERNS, VALIDATION_TYPES } from '../../../shar
 import { GROUPED_INPUT_ENUM } from '../../../shared/constants/app-enums';
 import { LoginService } from './login.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -112,7 +113,8 @@ export class LoginComponent extends BaseClass implements OnInit {
     
     this._loginService.login(RequestEnums.LOGIN,loginData).subscribe((loginResponse) =>{
       Utils.log('loginResponse    ::::::  ' + JSON.stringify(loginResponse));
-      //this.route.navigate(['dashboard']);
+      localStorage.setItem('jsessionId',loginResponse.jsessionId);
+      this.route.navigate(['dashboard']);
     },(error) =>{
       Utils.log('login error Response    ::::::  ' + JSON.stringify(error));
     });
