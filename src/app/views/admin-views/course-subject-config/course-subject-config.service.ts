@@ -6,7 +6,8 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardService {
+export class CourseSubjectConfigService {
+
   private basicAuthCookie;
 
   constructor(public _commonRequest: CommonRequestService,
@@ -14,14 +15,16 @@ export class DashboardService {
   
     }
 
-  getAllCourses(requestObject) {
+    saveCourses(requestObject,courseData) {
     this.basicAuthCookie = this._cookieService.get('basicAuth');
+    console.log('aaaaaaaaaaaaaaaaaa  :::: ' + JSON.stringify(courseData));
+    console.log('bbbbbbbbbbbbbbbbbb  :::: ' + this.basicAuthCookie);
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Basic ' +  this.basicAuthCookie
       })
     };
-    return this._commonRequest.request(requestObject,null,null,httpOptions);
+    return this._commonRequest.request(requestObject,courseData,null,httpOptions);
   }
 
 }

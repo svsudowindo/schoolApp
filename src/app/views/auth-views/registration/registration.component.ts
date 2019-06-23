@@ -1,3 +1,6 @@
+import  Utils  from 'src/app/shared/services/common/utils';
+import { GROUPED_INPUT_ENUM } from './../../../shared/constants/app-enums';
+import { FORM_TYPES, VALIDATION_TYPES } from './../../../shared/constants/validation-patterns';
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormGroupDirective, FormBuilder } from '@angular/forms';
 import { BaseClass } from '../../../shared/services/common/baseClass';
@@ -19,37 +22,89 @@ export class RegistrationComponent extends BaseClass implements OnInit {
   public errorMessageStatus: string;
   public genderData = ['Male', 'Female'];
 
+  registrationForm = [
+    {
+      type: FORM_TYPES.TEXT,
+      label: 'Email',
+      id: 'email',
+      required: true,
+      formControlName: 'email',
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
+      validatorMessages: ['Please enter the email','Please enter the valid email'],
+      isInputGrouped: false
+    },
+    {
+      type: FORM_TYPES.TEXT,
+      label: 'FirstName',
+      id: 'firstname',
+      required: true,
+      formControlName: 'firstName',
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
+      validatorMessages: ['Please enter the firstname'],
+      isInputGrouped: false
+    },
+    {
+      type: FORM_TYPES.TEXT,
+      label: 'LastName',
+      id: 'lastname',
+      required: true,
+      formControlName: 'lastName',
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
+      validatorMessages: ['Please enter the lastname'],
+      isInputGrouped: false
+    },
+    {
+      type: FORM_TYPES.TEXT,
+      label: 'Mobile Number',
+      id: 'mobilenumber',
+      required: true,
+      formControlName: 'mobileNumber',
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
+      validatorMessages: ['Please enter the mobile number'],
+      isInputGrouped: false
+    },
+    {
+      type: FORM_TYPES.TEXT,
+      label: 'Role',
+      id: 'role',
+      required: true,
+      formControlName: 'role',
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
+      validatorMessages: ['Please enter the role'],
+      isInputGrouped: false
+    },
+    {
+      type: FORM_TYPES.PASSWORD,
+      label: 'Password',
+      id: 'password',
+      required: true,
+      formControlName: 'password',
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
+      validatorMessages: ['Please enter the password'],
+      isInputGrouped: true
+    },
+    {
+      type: FORM_TYPES.SUBMIT,
+      label: 'REGISTER',
+      id: 'register'
+    },
+    {
+      type: FORM_TYPES.LINK,
+      label: 'Dashboard',
+      id: 'dashboard',
+      hasDescription: true,
+      description: 'Go to Dashboard ?',
+      navigationPath: '/dashboard'
+    }
+  ];
+  
 
-  public validation_messages = {
-    'firstname': [
-      { type: 'required', message: 'Please enter firstname' },
-      { type: 'whitespace', message: 'Please enter valid firstname' },
-      { type: 'pattern', message: 'Please enter alphabets only' },
-      { type: 'maxlength', message: 'Firstname can be maximum of 20 characters' },
-      { type: 'minlength', message: 'Firstname should be minimum of 2 characters' }
-    ],
-    'email': [
-      { type: 'required', message: 'Please enter email' },
-      { type: 'pattern', message: 'Please enter valid email' }
-    ],
-    'lastname': [
-      { type: 'required', message: 'Please enter LastName' },
-      { type: 'whitespace', message: 'Please enter valid lastname' },
-      { type: 'pattern', message: 'Please enter alphabets only' },
-      { type: 'maxlength', message: 'Lastname can be maximum of 20 characters' },
-      { type: 'minlength', message: 'Lastname should be minimum of 3 characters' }
-    ],
-    'phone': [
-      { type: 'required', message: 'Please enter Phone number' },
-      { type: 'pattern', message: 'Please enter only digits for phone number' },
-      { type: 'maxlength', message: 'Phone number can be maximum of 10 digits' },
-      { type: 'minlength', message: 'Phone number should be minimum of 10 digits' },
-      { type: 'phoneNumber', message: 'Please enter valid mobile number' }
-    ],
-    'gender': [
-      { type: 'required', message: 'Please select Gender' }
-    ]
-  };
 
   constructor(public injector: Injector,
     private _formBuilder: FormBuilder) {
@@ -58,47 +113,15 @@ export class RegistrationComponent extends BaseClass implements OnInit {
 
   ngOnInit() {
     // this.registerationForm = this._formBuilder.
-    this.initializeForm();
     setTimeout(() => {
       // this.postShow();
     }, 5000);
 
   }
 
-  initializeForm() {
-    this.registerationForm = this._formBuilder.group({
-      firstname: ['', Validators.compose([
-        Validators.required, CustomValidators.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
-        Validators.maxLength(20),
-        Validators.minLength(2)
-      ])],
-      email: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern(VALIDATION_PATTERNS.EMAIL)
-      ])],
-      lastname: ['', Validators.compose([
-        Validators.required, CustomValidators.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
-        Validators.maxLength(20),
-        Validators.minLength(3)
-      ])],
-      phone: ['', Validators.compose([
-        Validators.minLength(10),
-        Validators.pattern(VALIDATION_PATTERNS.POSITIVE_INTEGER),
-        Validators.maxLength(10),
-        Validators.minLength(10),
-        CustomValidators.phoneNumberValidator
-      ])],
-      gender: ['', Validators.compose([
-        Validators.required
-      ])]
-    });
-  }
 
-
-  onSubmit() {
-    if (this.registerationForm.valid) {
-      this.registerationForm.reset();
-      this.registerationNgForm.resetForm(); // used only for angular material
-    }
+  submit(event) {
+    Utils.log('registration data :::/ ' + JSON.stringify(event));
+    
   }
 }

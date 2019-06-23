@@ -19,6 +19,7 @@ import { environment } from './../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     SharedModule
   ],
   providers: [
+    CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptorsService, multi: true }
   ],
   bootstrap: [AppComponent],

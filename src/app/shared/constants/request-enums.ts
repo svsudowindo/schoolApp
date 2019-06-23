@@ -16,6 +16,12 @@ export const RequestEnums = {
         path: '/questionbank/auth/courses',
         keys: [],
         values: []
+    },
+    ADD_COURSE: {
+        type: 'POST',
+        path: '/questionbank/auth/addcourses',
+        keys: [],
+        values: []
     }
 };
 

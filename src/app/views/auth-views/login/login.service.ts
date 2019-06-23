@@ -8,8 +8,12 @@ export class LoginService {
   constructor(private _commonRequestService: CommonRequestService) { }
 
   login(requestObject,loginData) {
-    let header =new HttpHeaders({Authorization: 'Basic ' + btoa(loginData.email + ':' + loginData.password)});
-    return this._commonRequestService.request(requestObject,null,null,header);
+    const httpOptions = {
+      		headers: new HttpHeaders({
+      			'Authorization': 'Basic ' +  btoa(loginData.email + ':' + loginData.password)
+      		})
+      	};
+     return this._commonRequestService.request(requestObject,null,null,httpOptions);
   }
 
 

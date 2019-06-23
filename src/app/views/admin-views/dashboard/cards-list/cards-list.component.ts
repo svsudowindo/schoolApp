@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { CommonRequestService } from '../../../../shared/services/common-request.service';
 import { RequestEnums } from '../../../../shared/constants/request-enums';
@@ -17,10 +18,20 @@ export class CardsListComponent implements OnInit, OnChanges {
   searchKey = '';
   constructor(private _dashboardService: DashboardService,
     private _router: Router,
-    public _globalVariable: GlobalVariables) { }
+    public _globalVariable: GlobalVariables,
+    private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.getCardsInfo();
+
+    // this.httpClient.get("http://localhost:9090/questionbank/auth/courses", { withCredentials: true }).subscribe((res) => {
+		// 	console.log(res);
+		// 	// console.log(" jsessionId : " + res.jsessionId);
+		// 	// this.cookieService.set('jsessionId', res.jsessionId);
+		// 	// this.cookieValue = this.cookieService.get('jsessionId');
+		// 	// console.log("cookieValue : " + this.cookieValue);
+		// });
+
   }
   ngOnChanges() {
     this.filterData();
