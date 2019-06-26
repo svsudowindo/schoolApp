@@ -5,15 +5,9 @@ export const RequestEnums = {
         keys: [],
         values: []
     },
-    SUBJECTS_LIST: {
-        type: 'GET',
-        path: '/assets/modals/subjects.json',
-        keys: ['id'],
-        values: []
-    },
     GET_COURSES_LIST: {
         type: 'GET',
-        path: '/questionbank/auth/courses',
+        path: '/questionbank/auth/getAllCourses',
         keys: [],
         values: []
     },
@@ -25,19 +19,19 @@ export const RequestEnums = {
     },
     GET_YEAR_BY_COURSEID: {
         type: 'GET',
-        path: '/questionbank/auth/years/courseid/:id',
+        path: '/questionbank/auth/getYearsByCourseId/:id',
         keys: ['id'],
         values: []
     },
     ADD_SUBJECTS: {
         type: 'POST',
-        path: '/questionbank/auth/addsubjects',
+        path: '/questionbank/auth/addSubjectForYears',
         keys: [],
         values: []
     },
     GET_SUBJECTS_BY_YEAR: {
         type: 'GET',
-        path: '/questionbank/auth/subjects/yearid/:id',
+        path: '/questionbank/auth/getSubjectsByYearId/:id',
         keys: ['id'],
         values: []
     }
