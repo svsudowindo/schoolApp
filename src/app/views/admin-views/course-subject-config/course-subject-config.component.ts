@@ -1,4 +1,4 @@
-import  Utils  from 'src/app/shared/services/common/utils';
+import Utils from 'src/app/shared/services/common/utils';
 import { Component, OnInit, Injector } from '@angular/core';
 import { PopupService } from '../../../shared/components/componentsAsService/popup/popup.service';
 import { POPUP, DIALOG_TYPE, CLICK_STATUS, FROM_LOCATIONS } from '../../../shared/constants/popup-enum';
@@ -51,7 +51,7 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
     private _router: Router,
     private _formBuilder: FormBuilder,
     public _injector: Injector,
-    private _courseService:CourseSubjectConfigService) {
+    private _courseService: CourseSubjectConfigService) {
     super(_injector);
   }
 
@@ -108,32 +108,32 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
 
   // saving course
   saveAllCourses() {
-    console.log(this.courseForm.get('courses').value);
-    this._courseService.saveCourses(RequestEnums.ADD_COURSE,this.courseForm.get('courses').value).subscribe((data)=>{
-Utils.log('add All courses  ::::: ' + JSON.stringify(data));
-this._popupService.openModal({
-  dialog_type: DIALOG_TYPE.ALERT_DIALOG,
-  title: 'Success',
-  type: POPUP.SUCCESS,
-  message: 'Course saved successfully',
-  okButtonLabel: 'OK'
-}).then(res => {
-  console.log(res);
- this._router.navigate(['dashboard']);
-});
+    this.showLoading();
+    Utils.log(this.courseForm.get('courses').value);
+    this._courseService.saveCourses(RequestEnums.ADD_COURSE, this.courseForm.get('courses').value).subscribe((data) => {
+      Utils.log('add All courses  ::::: ' + JSON.stringify(data));
+      this._popupService.openModal({
+        dialog_type: DIALOG_TYPE.ALERT_DIALOG,
+        title: 'Success',
+        type: POPUP.SUCCESS,
+        message: 'Course saved successfully',
+        okButtonLabel: 'OK'
+      }).then(res => {
+        Utils.log(res);
+        this._router.navigate(['dashboard']);
+      });
 
-    },(error) =>{
+    }, (error) => {
       Utils.log('error  ::::: ' + JSON.stringify(error));
+      this.hideLoading();
     });
   }
   // saving individual course
   saveIndividualCourse(index) {
+    this.showLoading();
     let course = [];
-    console.log(index);
-   // this.courseForm.get('courses').value[index]['createdBy'] = localStorage.getItem('username');
-    console.log(this.courseForm.get('courses').value[index]);
-   course.push(this.courseForm.get('courses').value[index]);
-    this._courseService.saveCourses(RequestEnums.ADD_COURSE , course).subscribe((data) =>{
+    course.push(this.courseForm.get('courses').value[index]);
+    this._courseService.saveCourses(RequestEnums.ADD_COURSE, course).subscribe((data) => {
       Utils.log('response of add subject  ::::: ' + JSON.stringify(data));
       this._popupService.openModal({
         dialog_type: DIALOG_TYPE.ALERT_DIALOG,
@@ -144,19 +144,22 @@ this._popupService.openModal({
         fromLocation: {
           locationName: FROM_LOCATIONS.SAVE_COURSE,
           label: 'Add Subjects',
-          navigation: ['add-subjects', 1]
+          navigation: ['add-subjects', data[0].courseID]
         }
       }).then(res => {
-        console.log(res);
+        Utils.log(res);
         this.removeFormGroupFromArray(index);
+        this.hideLoading();
       });
-    },(error) =>{
-
+    }, (error) => {
+      Utils.log('error in save individual course');
+      this.hideLoading();
     });
-    // after successfull service call
-   
+
   }
+
   navigateToDashboard() {
     this._router.navigate(['dashboard']);
   }
+
 }

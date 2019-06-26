@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LoaderService } from '../../../shared/components/componentsAsService/loader/loader.service';
+import { BaseClass } from './../../../shared/services/common/baseClass';
+import { Component, OnInit, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,14 +7,17 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent extends BaseClass implements OnInit {
   searchKey: string;
-  constructor(private _router: Router) { }
+  constructor(private _router: Router,
+    public injector: Injector) {
+    super(injector);
+  }
 
   ngOnInit() {
+this.hideLoading();
   }
-  openLoader() {
-  }
+
   searchCourse(searchValue) {
     this.searchKey = searchValue;
   }

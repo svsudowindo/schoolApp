@@ -30,7 +30,7 @@ export class LoginComponent extends BaseClass implements OnInit {
       formControlName: 'email',
       validators: [VALIDATION_PATTERNS.REQUIRED],
       validatorsTypes: [VALIDATION_TYPES.REQUIRED],
-      validatorMessages: ['Please enter the email','Please enter the valid email'],
+      validatorMessages: ['Please enter the email', 'Please enter the valid email'],
       isInputGrouped: false
     },
     {
@@ -65,24 +65,25 @@ export class LoginComponent extends BaseClass implements OnInit {
     }
   ];
   // once successfull login make can activate service to true
-   constructor(public route: Router,
-     public injector: Injector,
-     private _loginService: LoginService,
-  private cookieService: CookieService) {
-     super(injector);
-   }
+  constructor(public route: Router,
+    public injector: Injector,
+    private _loginService: LoginService,
+    private cookieService: CookieService) {
+    super(injector);
+  }
 
   ngOnInit() {
     Utils.log('hello from login component by utils method');
   }
 
   submit(loginData) {
-    this._loginService.login(RequestEnums.LOGIN,loginData).subscribe((loginResponse) =>{
+    this.showLoading();
+    this._loginService.login(RequestEnums.LOGIN, loginData).subscribe((loginResponse) => {
       let userName = loginResponse.firstName + ' ' + loginResponse.lastName;
-      localStorage.setItem('username',userName);
+      localStorage.setItem('username', userName);
       this.cookieService.set('basicAuth', btoa(loginData.email + ':' + loginData.password));
       this.route.navigate(['dashboard']);
-    },(error) =>{
+    }, (error) => {
       Utils.log('login error Response    ::::::  ' + JSON.stringify(error));
     });
 
