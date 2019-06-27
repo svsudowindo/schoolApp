@@ -25,5 +25,12 @@
     font-size: 12px;
     font-weight: 500;
     color: #a09f9b;
+}
 
+@media (min-width: 768px) {
+    .col-md-1 {
+        // -ms-flex: 0 0 8.333333%;
+        /* flex: 0 0 8.333333%; */
+        max-width: 7.333333%;
+    }
 }

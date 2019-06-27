@@ -88,4 +88,13 @@ export class BaseClass implements OnInit {
     }
     Utils.log('Invalid Controls: ' + Utils.stringify(invalid));
   }
+
+  showLoading() {
+    this.globalVariablesForBaseClass.open();
+  }
+
+  hideLoading() {
+    this.globalVariablesForBaseClass.close();
+  }
+
 }

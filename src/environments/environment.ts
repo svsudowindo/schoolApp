@@ -18,7 +18,7 @@ export const environment = {
   },
   // Any base url of the application which is common for all request
   // BASE_URL: 'https://jsonplaceholder.typicode.com',
-  BASE_URL: 'http://localhost:4200'
+  BASE_URL: 'http://52.66.196.194'
 };
 
 /*

@@ -10,7 +10,8 @@ export class HeaderInterceptorsService {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const defaultHeaders = {
       'Content-Type': 'application/json; charset=UTF-8'
-    };
+     };
+    
     // const authToken = 'dahskahdkkdksdhkhsdk';
     // if (authToken) {
     //   defaultHeaders['Authorization'] = 'Bearer ' + authToken;
@@ -27,6 +28,7 @@ export class HeaderInterceptorsService {
 
     const modifiedReq = req.clone({
       headers: new HttpHeaders(defaultHeaders),
+      withCredentials:true
     });
     return next.handle(modifiedReq);
   }

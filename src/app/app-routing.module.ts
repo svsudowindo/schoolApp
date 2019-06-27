@@ -64,7 +64,7 @@ const routes: Routes = [
         canLoad: [CanLoadService] // Use when we want to make a disission to load sub modules or not
       },
       {
-        path: 'course-details',
+        path: 'course-details/:id',
         loadChildren: './views/admin-views/course-details/course-details.module#CourseDetailsModule'
       },
       {
