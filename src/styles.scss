@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import './assets/styles/app.scss';
-
+@import './assets/styles/variables.scss';
 
 html, body { height: 100%;    background: url(./assets/images/app/background-image.png) no-repeat center center fixed}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -19,4 +19,8 @@ button:disabled {
 .error {
     color: #dc3545;
     font-size: 80%
+}
+
+.pink-color-heading {
+    color: $-pink-color;
 }

@@ -55,13 +55,17 @@ const routes: Routes = [
   {
     path: '',
     component: AdminLayoutComponent,
-    canActivate: [CanActivateService],
+    // canActivate: [CanActivateService],
     canActivateChild: [ CanActivateChildService ], // Use when we want to make a disission to load sub modules or not
     children: [
       {
         path: 'dashboard',
         loadChildren: './views/admin-views/dashboard/dashboard.module#DashboardModule',
         canLoad: [CanLoadService] // Use when we want to make a disission to load sub modules or not
+      },
+      {
+        path: 'user-registration',
+        loadChildren: './views/admin-views/user-registration/user-registration.module#UserRegistrationModule'
       },
       {
         path: 'course-details/:id',
