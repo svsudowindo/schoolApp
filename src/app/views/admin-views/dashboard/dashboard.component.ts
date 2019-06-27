@@ -25,4 +25,8 @@ this.hideLoading();
   navigateToAddCourse() {
     this._router.navigate(['add-course']);
   }
+
+  navigateToRegister() {
+    this._router.navigate(['user-registration']);
+  }
 }
