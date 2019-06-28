@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../user.model';
 import { ITEMS_PER_PAGE } from '../user-enums';
+import { CustomSearchService } from '../../../../shared/services/common/customSearch/custom-search.service';
 
 
 const users: User[] = [
@@ -181,13 +182,16 @@ function search(text: string, pipe: PipeTransform) {
 })
 export class UserListComponent implements OnInit {
   users: Array<any>;
+  searchData = [];
   pageOfItems: Array<any>;
   pageSize = 5;
   initialPage = 1;
   IETMS_PER_PAGE = ITEMS_PER_PAGE;
-
-  constructor(private _router: Router, private _changeDetection: ChangeDetectorRef) {
+  searchKey = '';
+  constructor(private _router: Router,
+    private _customSearchService: CustomSearchService) {
     this.users = users;
+    this.searchData = users;
   }
 
   ngOnInit() {
@@ -195,6 +199,10 @@ export class UserListComponent implements OnInit {
   onChangePage(pageOfItems: Array<any>) {
     // update current page of items
     this.pageOfItems = pageOfItems;
+  }
+
+  search() {
+    this.users = this._customSearchService.searchFilterArrayOfJson(this.searchData, this.searchKey, 'username')
   }
   navigateToDashboard() {
     this._router.navigate(['dashboard']);
