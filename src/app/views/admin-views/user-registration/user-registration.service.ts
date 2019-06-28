@@ -1,12 +1,12 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { CommonRequestService } from '../../../shared/services/common-request.service';
 import { CookieService } from 'ngx-cookie-service';
+import { CommonRequestService } from './../../../shared/services/common-request.service';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CourseSubjectConfigService {
+export class UserRegistrationService {
 
   private basicAuthCookie;
 
@@ -15,14 +15,13 @@ export class CourseSubjectConfigService {
   
     }
 
-    saveCourses(requestObject,courseData) {
+  registerUser(requestObject,userObject) {
     this.basicAuthCookie = this._cookieService.get('basicAuth');
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Basic ' +  this.basicAuthCookie
       })
     };
-    return this._commonRequest.request(requestObject,courseData,null,httpOptions);
+    return this._commonRequest.request(requestObject,userObject,null,httpOptions);
   }
-
 }

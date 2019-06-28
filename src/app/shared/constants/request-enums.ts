@@ -34,6 +34,12 @@ export const RequestEnums = {
         path: '/questionbank/auth/getSubjectsByYearId/:id',
         keys: ['id'],
         values: []
+    },
+    REGISTER_USER: {
+        type: 'POST',
+        path: '/questionbank/registerUser',
+        keys: [],
+        values: []
     }
 };
 

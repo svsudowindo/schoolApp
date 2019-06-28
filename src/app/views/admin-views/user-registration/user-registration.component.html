@@ -13,44 +13,87 @@
     <div class="card-header text-center">
       <span class="pink-color-heading font-weight-500">USER REGISTRATION FORM</span>
     </div>
+   <form [formGroup]="registerationForm" novalidate (ngSubmit)="onSubmit()" autocomplete="off">
+
+
     <div class="card-body">
       <div class="row">
         <div class="form-group col-6">
           <label for="username">Username</label>
-          <input type="text" class="form-control" id="username" placeholder="Username">
+          <input type="text" class="form-control" id="username" placeholder="username"  name="username"
+          formControlName="username">
+          <div *ngIf="registerationForm.get('username').invalid && registerationForm.get('username').touched">
+            {{ getErrorMessage(registerationForm, validation_messages, 'username', 'username') }}
+          </div>
         </div>
 
         <div class="form-group col-6">
           <label for="firstName">First Name</label>
-          <input type="text" class="form-control" id="firstName" placeholder="FirstName">
+          <input type="text" class="form-control" id="firstName" placeholder="FirstName"  name="firstName"
+          formControlName="firstName">
+          <div *ngIf="registerationForm.get('firstName').invalid && registerationForm.get('firstName').touched">
+            {{ getErrorMessage(registerationForm, validation_messages, 'firstName', 'firstName') }}
+          </div>
         </div>
 
 
         <div class="form-group col-6">
           <label for="lastName">LastName</label>
-          <input type="text" class="form-control" id="lastName" placeholder="LastName">
+          <input type="text" class="form-control" id="lastName" placeholder="LastName"  name="lastName"
+          formControlName="lastName">
+          <div *ngIf="registerationForm.get('lastName').invalid && registerationForm.get('lastName').touched">
+            {{ getErrorMessage(registerationForm, validation_messages, 'lastName', 'lastName') }}
+          </div>
         </div>
 
         <div class="form-group col-6">
           <label for="emailAddress">Email Address</label>
-          <input type="email" class="form-control" id="emailAddress" placeholder="Email Address">
+          <input type="email" class="form-control" id="emailAddress" placeholder="Email Address"  name="emailAddress"
+          formControlName="emailAddress">
+          <div *ngIf="registerationForm.get('emailAddress').invalid && registerationForm.get('emailAddress').touched">
+            {{ getErrorMessage(registerationForm, validation_messages, 'emailAddress', 'emailAddress') }}
+          </div>
         </div>
 
         <div class="form-group col-6 ">
-          <label for="mobileNumber">Email Address</label>
-          <input type="number" class="form-control" id="mobileNumber" placeholder="Mobile Number">
+          <label for="mobileNumber">Mobile Number</label>
+          <input type="text" class="form-control" id="mobileNumber" placeholder="Mobile Number"  name="mobileNumber"
+          formControlName="mobileNumber">
+          <div *ngIf="registerationForm.get('mobileNumber').invalid && registerationForm.get('mobileNumber').touched">
+            {{ getErrorMessage(registerationForm, validation_messages, 'mobileNumber', 'mobileNumber') }}
+          </div>
         </div>
 
         <div class="form-group col-6">
           <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password">
+          <input type="password" class="form-control" id="Password" placeholder="Password"  name="Password"
+          formControlName="Password">
+          <div *ngIf="registerationForm.get('Password').invalid && registerationForm.get('Password').touched">
+            {{ getErrorMessage(registerationForm, validation_messages, 'Password', 'Password') }}
+          </div>
         </div>
+
+        <div class="form-group col-6">
+          <label for="role">Role</label>
+          <select id="role" class="form-control" formControlName="role" placeholder="Please select role" required>
+            <ng-container *ngFor="let role of roles">
+              <option [ngValue]="role.value">{{role.name}}</option>
+            </ng-container>
+          </select>
+          <div *ngIf="registerationForm.get('role').invalid && registerationForm.get('role').touched">
+            {{ getErrorMessage(registerationForm, validation_messages, 'role', 'role') }}
+          </div>
+        </div>
+
       </div>
       <div align="right">
-        <button type="button" class="btn pink-color-label">Cancel</button>
-        <button type="button" class="btn pink-color-label m-l-10">Register User</button>
+        <button type="button" class="btn pink-color-label" (click)="navigateToDashboard()">Cancel</button>
+        <button type="submit" class="btn pink-color-label m-l-10">Register User</button>
 
       </div>
     </div>
+
+
+   </form>
   </div>
 </div>
