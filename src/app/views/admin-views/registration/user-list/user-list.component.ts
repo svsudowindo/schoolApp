@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../user.model';
 import { ITEMS_PER_PAGE } from '../user-enums';
+import { CustomSearchService } from '../../../../shared/services/common/customSearch/custom-search.service';
 
 
 const users: User[] = [
@@ -79,7 +80,7 @@ const users: User[] = [
   {
     emailAddress: 'vipul@gmail.com',
     firstName: 'vipul',
-    lastName: 'parmar',
+    lastName: 'parmar1',
     mobileNumber: '8991919191',
     role: 'user',
     updatedBy: 'admin',
@@ -98,7 +99,7 @@ const users: User[] = [
   {
     emailAddress: 'vipul@gmail.com',
     firstName: 'vipul',
-    lastName: 'parmar',
+    lastName: 'parmar2',
     mobileNumber: '8991919191',
     role: 'user',
     updatedBy: 'admin',
@@ -117,7 +118,7 @@ const users: User[] = [
   {
     emailAddress: 'vipul@gmail.com',
     firstName: 'vipul',
-    lastName: 'parmar',
+    lastName: 'parmar4',
     mobileNumber: '8991919191',
     role: 'user',
     updatedBy: 'admin',
@@ -136,7 +137,7 @@ const users: User[] = [
   {
     emailAddress: 'vipul@gmail.com',
     firstName: 'vipul',
-    lastName: 'parmar',
+    lastName: 'parmar6',
     mobileNumber: '8991919191',
     role: 'user',
     updatedBy: 'admin',
@@ -181,13 +182,16 @@ function search(text: string, pipe: PipeTransform) {
 })
 export class UserListComponent implements OnInit {
   users: Array<any>;
+  searchData = [];
   pageOfItems: Array<any>;
   pageSize = 5;
   initialPage = 1;
   IETMS_PER_PAGE = ITEMS_PER_PAGE;
-
-  constructor(private _router: Router, private _changeDetection: ChangeDetectorRef) {
+  searchKey = '';
+  constructor(private _router: Router,
+    private _customSearchService: CustomSearchService) {
     this.users = users;
+    this.searchData = users;
   }
 
   ngOnInit() {
@@ -195,6 +199,12 @@ export class UserListComponent implements OnInit {
   onChangePage(pageOfItems: Array<any>) {
     // update current page of items
     this.pageOfItems = pageOfItems;
+  }
+
+  search() {
+    const headers = ['username', 'lastName'];
+    this.users = this._customSearchService.searchFilterArrayOfJson(this.searchData, this.searchKey, headers);
+    console.log(this.users);
   }
   navigateToDashboard() {
     this._router.navigate(['dashboard']);

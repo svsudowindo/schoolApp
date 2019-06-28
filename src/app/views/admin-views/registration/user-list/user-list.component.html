@@ -15,7 +15,7 @@
     <div class="form-group has-search col-md-4">
       <span class="material-icons form-control-feedback">search</span>
       <form class="input-group">
-        <input type="text" class="form-control" placeholder="Search User" name="search">
+        <input type="text" class="form-control" placeholder="Search User" name="search" (keyup)="search()" [(ngModel)]="searchKey">
       </form>
     </div>
     <div class="col-md-6">
@@ -71,7 +71,7 @@
       </ng-container>
     </tbody>
   </table>
-  <div class="d-flex justify-content-between pointer">
+  <div class="d-flex justify-content-center pointer">
     <jw-pagination [items]="users" (changePage)="onChangePage($event)" [pageSize]="pageSize"></jw-pagination>
   </div>
 </div>
