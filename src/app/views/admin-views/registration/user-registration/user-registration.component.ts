@@ -93,7 +93,7 @@ export class UserRegistrationComponent extends BaseClass implements OnInit {
   }
 
   navigateToDashboard() {
-    this._router.navigate(['dashboard']);
+    this._router.navigate(['registration']);
   }
 
   onSubmit() {

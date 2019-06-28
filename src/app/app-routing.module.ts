@@ -41,13 +41,6 @@ const routes: Routes = [
       {
         path: '404',
         loadChildren: './views/auth-views/page-not-found/page-not-found.module#PageNotFoundModule'
-      },
-      {
-        path: 'registration',
-        loadChildren: './views/auth-views/registration/registration.module#RegistrationModule',
-        data: {
-          preload: false // use when you dont want lazy loading for a particular module
-        }
       }
     ]
   },
@@ -64,8 +57,8 @@ const routes: Routes = [
         canLoad: [CanLoadService] // Use when we want to make a disission to load sub modules or not
       },
       {
-        path: 'user-registration',
-        loadChildren: './views/admin-views/user-registration/user-registration.module#UserRegistrationModule'
+        path: 'registration',
+        loadChildren: './views/admin-views/registration/registration.module#RegistrationModule'
       },
       {
         path: 'course-details/:id',
