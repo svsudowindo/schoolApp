@@ -14,6 +14,6 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   navigateToDashboard() {
-    this._router.navigate(['dashboard']);
+    this._router.navigate(['registration']);
   }
 }

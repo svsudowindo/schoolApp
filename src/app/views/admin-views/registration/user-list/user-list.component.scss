@@ -1,0 +1,27 @@
+@import '../../../../../assets/styles/variables.scss';
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 4;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: $-pink-color;
+}
+
+td {
+    font-size: 14px;
+    font-weight: 400;
+}
+th {
+    font-weight: 500;
+    font-size: 15px;
+    color: #FF7473;
+}
