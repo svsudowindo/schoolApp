@@ -10,7 +10,7 @@ export class CustomSearchService {
   // @params
   // searchArray : array which need to be searched
   // searchValue : value which need to be searched in the Array
-  // searchBasedValue: which parameter of array need to be searched
+  // searchBasedValue: which parameters of array need to be searched (Array need to be passed)
   searchFilterArrayOfJson(searchArray, searchValue: string, searchBasedValue: string[]) {
     const filteredArray = [];
     for (let j = 0; j < searchBasedValue.length; j++) {
