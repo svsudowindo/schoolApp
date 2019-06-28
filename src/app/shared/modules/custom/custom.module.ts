@@ -12,6 +12,7 @@ import { LogoComponent } from '../../components/logo/logo.component';
 import { ReusableAuthFormsComponent } from '../../components/reusable-auth-forms/reusable-auth-forms.component';
 import { PredefinedModule } from '../predefined/predefined.module';
 import { NoAcessComponent } from '../../components/no-acess/no-acess.component';
+import { JwPaginationComponent } from 'jw-angular-pagination';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NoAcessComponent } from '../../components/no-acess/no-acess.component';
     SearchComponent,
     LogoComponent,
     ReusableAuthFormsComponent,
-    NoAcessComponent
+    NoAcessComponent,
+    JwPaginationComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { NoAcessComponent } from '../../components/no-acess/no-acess.component';
     SearchComponent,
     LogoComponent,
     ReusableAuthFormsComponent,
-    NoAcessComponent
+    NoAcessComponent,
+    JwPaginationComponent
   ]
 })
 export class CustomModule { }

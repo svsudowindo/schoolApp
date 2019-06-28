@@ -10,14 +10,12 @@
 </div>
 
 
-
-
 <div class="container">
   <form class="m-t-10 row">
     <div class="form-group has-search col-md-4">
       <span class="material-icons form-control-feedback">search</span>
       <form class="input-group">
-        <input type="text" class="form-control" placeholder="Search User" name="search" [formControl]="filter">
+        <input type="text" class="form-control" placeholder="Search User" name="search">
       </form>
     </div>
     <div class="col-md-6">
@@ -43,34 +41,37 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let user of users$ | async; index as i">
+      <ng-container *ngFor="let user of pageOfItems; index as i">
         <tr class="pointer" (click)="navigateToEditUser(user)">
           <td>
-            <ngb-highlight [result]="user.username" [term]="filter.value"></ngb-highlight>
+            <ngb-highlight [result]="user.username"></ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="user.firstName" [term]="filter.value"></ngb-highlight>
+            <ngb-highlight [result]="user.firstName"></ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="user.lastName" [term]="filter.value"></ngb-highlight>
+            <ngb-highlight [result]="user.lastName"></ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="user.emailAddress" [term]="filter.value"></ngb-highlight>
+            <ngb-highlight [result]="user.emailAddress"></ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="user.mobileNumber" [term]="filter.value"></ngb-highlight>
+            <ngb-highlight [result]="user.mobileNumber"></ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="user.role" [term]="filter.value"></ngb-highlight>
+            <ngb-highlight [result]="user.role"></ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="user.updatedBy" [term]="filter.value"></ngb-highlight>
+            <ngb-highlight [result]="user.updatedBy"></ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="user.updatedDate" [term]="filter.value"></ngb-highlight>
+            <ngb-highlight [result]="user.updatedDate"></ngb-highlight>
           </td>
         </tr>
       </ng-container>
     </tbody>
   </table>
+  <div class="d-flex justify-content-between pointer">
+    <jw-pagination [items]="users" (changePage)="onChangePage($event)" [pageSize]="pageSize"></jw-pagination>
+  </div>
 </div>
