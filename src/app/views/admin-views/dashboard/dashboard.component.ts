@@ -15,7 +15,7 @@ export class DashboardComponent extends BaseClass implements OnInit {
   }
 
   ngOnInit() {
-this.hideLoading();
+    this.hideLoading();
   }
 
   searchCourse(searchValue) {
@@ -27,6 +27,6 @@ this.hideLoading();
   }
 
   navigateToRegister() {
-    this._router.navigate(['user-registration']);
+    this._router.navigate(['registration']);
   }
 }
