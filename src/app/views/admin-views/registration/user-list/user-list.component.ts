@@ -80,7 +80,7 @@ const users: User[] = [
   {
     emailAddress: 'vipul@gmail.com',
     firstName: 'vipul',
-    lastName: 'parmar',
+    lastName: 'parmar1',
     mobileNumber: '8991919191',
     role: 'user',
     updatedBy: 'admin',
@@ -99,7 +99,7 @@ const users: User[] = [
   {
     emailAddress: 'vipul@gmail.com',
     firstName: 'vipul',
-    lastName: 'parmar',
+    lastName: 'parmar2',
     mobileNumber: '8991919191',
     role: 'user',
     updatedBy: 'admin',
@@ -118,7 +118,7 @@ const users: User[] = [
   {
     emailAddress: 'vipul@gmail.com',
     firstName: 'vipul',
-    lastName: 'parmar',
+    lastName: 'parmar4',
     mobileNumber: '8991919191',
     role: 'user',
     updatedBy: 'admin',
@@ -137,7 +137,7 @@ const users: User[] = [
   {
     emailAddress: 'vipul@gmail.com',
     firstName: 'vipul',
-    lastName: 'parmar',
+    lastName: 'parmar6',
     mobileNumber: '8991919191',
     role: 'user',
     updatedBy: 'admin',
@@ -202,7 +202,9 @@ export class UserListComponent implements OnInit {
   }
 
   search() {
-    this.users = this._customSearchService.searchFilterArrayOfJson(this.searchData, this.searchKey, 'username')
+    const headers = ['username', 'lastName'];
+    this.users = this._customSearchService.searchFilterArrayOfJson(this.searchData, this.searchKey, headers);
+    console.log(this.users);
   }
   navigateToDashboard() {
     this._router.navigate(['dashboard']);
