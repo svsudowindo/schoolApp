@@ -1,7 +1,7 @@
 import Utils from 'src/app/shared/services/common/utils';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, Injector } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Injector, ChangeDetectorRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RequestEnums } from 'src/app/shared/constants/request-enums';
 import { BaseClass } from '../../../../shared/services/common/baseClass';
 import { VALIDATION_PATTERNS } from '../../../../shared/constants/validation-patterns';
@@ -25,6 +25,8 @@ export class UserRegistrationComponent extends BaseClass implements OnInit {
       value: 'ROLE_USER'
     }
   ];
+  isEditMode = false;
+  courseId: any;
   public validation_messages = {
     'firstName': [
       { type: 'required', message: 'Please enter firstname' }
@@ -55,12 +57,29 @@ export class UserRegistrationComponent extends BaseClass implements OnInit {
   constructor(private _router: Router,
     public _injector: Injector,
     private _formBuilder: FormBuilder,
-    public _registrationService: RegistrationService) {
+    public _registrationService: RegistrationService,
+    private _activatedRoute: ActivatedRoute,
+    private _changeDetector: ChangeDetectorRef) {
     super(_injector);
+    this._activatedRoute.params.subscribe(res => {
+      if (res.id) {
+        this.isEditMode = true;
+        this.courseId = res.id;
+      }
+    });
   }
 
   ngOnInit() {
     this.initializeForm();
+  }
+  getCourseDetails() {
+    this.showLoading();
+    RequestEnums.GET_USER_BY_ID.values = [this.courseId];
+    this._registrationService.getUserById(RequestEnums.GET_USER_BY_ID).subscribe(res => {
+      console.log(res);
+      this.registerationForm.patchValue(res);
+      this.hideLoading();
+    });
   }
 
   initializeForm() {
@@ -90,6 +109,9 @@ export class UserRegistrationComponent extends BaseClass implements OnInit {
       ])],
       createdBy: [localStorage.getItem('username')]
     });
+    if (this.isEditMode) {
+      this.getCourseDetails();
+    }
   }
 
   navigateToDashboard() {

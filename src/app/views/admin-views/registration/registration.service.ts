@@ -12,27 +12,34 @@ export class RegistrationService {
 
   constructor(public _commonRequest: CommonRequestService,
      private _cookieService: CookieService) {
-  
     }
 
-  registerUser(requestObject,userObject) {
+  registerUser(requestObject, userObject) {
     this.basicAuthCookie = this._cookieService.get('basicAuth');
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Basic ' +  this.basicAuthCookie
       })
     };
-    return this._commonRequest.request(requestObject,userObject,null,httpOptions);
+    return this._commonRequest.request(requestObject, userObject, null, httpOptions);
   }
-  
-  getAllUsers(requestObject){
+  getAllUsers(requestObject) {
     this.basicAuthCookie = this._cookieService.get('basicAuth');
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Basic ' +  this.basicAuthCookie
       })
     };
-    return this._commonRequest.request(requestObject,null,null,httpOptions);
- 
+    return this._commonRequest.request(requestObject, null, null, httpOptions);
+  }
+
+  getUserById(requestObject) {
+    this.basicAuthCookie = this._cookieService.get('basicAuth');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Basic ' +  this.basicAuthCookie
+      })
+    };
+    return this._commonRequest.request(requestObject, null, null, httpOptions);
   }
 }

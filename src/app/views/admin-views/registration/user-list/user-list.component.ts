@@ -54,7 +54,7 @@ export class UserListComponent implements OnInit {
   }
 
   navigateToEditUser(user) {
-    this._router.navigate(['registration', 'edit', user.username]);
+    this._router.navigate(['registration', 'edit', user.userId]);
   }
 
   getAllUsers() {
