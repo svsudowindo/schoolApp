@@ -1,4 +1,4 @@
-import  Utils  from 'src/app/shared/services/common/utils';
+import Utils from 'src/app/shared/services/common/utils';
 import { Component, OnInit, PipeTransform } from '@angular/core';
 import { Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
@@ -55,7 +55,6 @@ export class UserListComponent implements OnInit {
     this.users = this._customSearchService.searchFilterArrayOfJson(this.searchData, this.searchKey, headers);
     console.log(this.users);
   }
-
   navigateToDashboard() {
     this._router.navigate(['dashboard']);
   }
@@ -69,12 +68,12 @@ export class UserListComponent implements OnInit {
     this._router.navigate(['registration', 'edit', user.username]);
   }
 
-  getAllUsers(){
-    this._registrationService.getAllUsers(RequestEnums.GET_ALL_USER).subscribe((data)=>{
-this.users = data;
-Utils.log('get All user success :::: ' + JSON.stringify(data));
+  getAllUsers() {
+    this._registrationService.getAllUsers(RequestEnums.GET_ALL_USER).subscribe((data) => {
+      this.users = data;
+      Utils.log('get All user success :::: ' + JSON.stringify(data));
 
-    },(error)=>{
+    }, (error) => {
       Utils.log('get All user error  :::: ' + JSON.stringify(error));
     });
   }
