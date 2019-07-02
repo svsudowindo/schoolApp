@@ -41,36 +41,43 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let user of pageOfItems; index as i">
-        <tr class="pointer" (click)="navigateToEditUser(user)">
-          <td>
-            <ngb-highlight [result]="user.username"></ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="user.firstName"></ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="user.lastName"></ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="user.emailAddress"></ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="user.mobileNumber"></ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="user.role"></ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="user.updatedBy"></ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="user.updatedDate"></ngb-highlight>
-          </td>
-        </tr>
+      <ng-container *ngIf="pageOfItems && pageOfItems.length > 0">
+        <ng-container *ngFor="let user of pageOfItems; index as i">
+          <tr class="pointer" (click)="navigateToEditUser(user)">
+            <td>
+              <ngb-highlight [result]="user.username"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="user.firstName"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="user.lastName"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="user.emailAddress"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="user.mobileNumber"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="user.role"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="user.updatedBy"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="user.updatedDate"></ngb-highlight>
+            </td>
+          </tr>
+        </ng-container>
       </ng-container>
     </tbody>
   </table>
+  <ng-container *ngIf="!pageOfItems || pageOfItems.length <=0">
+    <div class="d-flex justify-content-center no-records">
+      No Records Found
+    </div>
+  </ng-container>
   <div class="d-flex justify-content-center pointer">
     <jw-pagination [items]="users" (changePage)="onChangePage($event)" [pageSize]="pageSize"></jw-pagination>
   </div>
