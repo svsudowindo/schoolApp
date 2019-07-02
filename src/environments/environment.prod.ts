@@ -12,5 +12,5 @@ export const environment = {
     storageBucket: "school-d8681.appspot.com",
     messagingSenderId: "451732381098"
   },
-  BASE_URL: 'http://localhost:4200'
+  BASE_URL: 'http://52.66.196.194'
 };
