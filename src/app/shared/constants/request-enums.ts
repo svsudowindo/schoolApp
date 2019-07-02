@@ -47,6 +47,12 @@ export const RequestEnums = {
         keys: [],
         values: []
     },
+    GET_USER_BY_ID: {
+        type: 'GET',
+        path: '/questionbank/auth/getUserById/:id',
+        keys: ['id'],
+        values: []
+    },
     FORGET_PASSWORD: {
         type: 'GET',
         path: '/questionbank/forgotPassword/:id',
