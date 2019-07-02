@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CommonRequestService } from '../../../shared/services/common-request.service';
 import { RequestEnums } from '../../../shared/constants/request-enums';
 import { GlobalVariables } from '../../../shared/services/common/globalVariables';
 import Utils from 'src/app/shared/services/common/utils';
@@ -38,18 +37,9 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCardsInfo();
     this.getYearsByCourseId();
   }
 
-  getCardsInfo() {
-    // this.subjects = this._globalVariable.getParameterData('course').year;
-    // Utils.log('subjects   ::::::  ' + JSON.stringify(this.subjects));
-    // // this._commonRequestServ.request(RequestEnums.SUBJECTS_LIST).subscribe(res => {
-    //   // Utils.log(res);
-    //   this.subjects = res;
-    // });
-  }
   navigateToDashboard() {
     this._router.navigate(['dashboard']);
   }

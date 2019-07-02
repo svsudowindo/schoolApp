@@ -1,27 +1,26 @@
-import { RequestEnums } from './../../../shared/constants/request-enums';
-import { ForgotPasswordService } from './forgot-password.service';
+import { FORM_TYPES, VALIDATION_PATTERNS, VALIDATION_TYPES } from './../../../../shared/constants/validation-patterns';
+import { ForgotPasswordService } from './../forgot-password.service';
+import { RequestEnums } from './../../../../shared/constants/request-enums';
 import { Component, OnInit } from '@angular/core';
-import { FORM_TYPES, VALIDATION_PATTERNS, VALIDATION_TYPES } from '../../../shared/constants/validation-patterns';
 import Utils from 'src/app/shared/services/common/utils';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss']
+  selector: 'app-otp-verification',
+  templateUrl: './otp-verification.component.html',
+  styleUrls: ['./otp-verification.component.scss']
 })
-export class ForgotPasswordComponent implements OnInit {
+export class OtpVerificationComponent implements OnInit {
 
-  
   forgetInfo = [
     {
       type: FORM_TYPES.TEXT,
       label: 'Email',
       id: 'email',
       required: true,
-      formControlName: 'email',
-      validators: [VALIDATION_PATTERNS.REQUIRED,  VALIDATION_PATTERNS.EMAIL],
-      validatorsTypes: [VALIDATION_TYPES.REQUIRED, VALIDATION_TYPES.PATTERN],
-      validatorMessages: ['Please enter the email', 'Please enter the valid email']
+      formControlName: 'otp',
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
+      validatorMessages: ['Please enter the OTP']
     },
     {
       type: FORM_TYPES.SUBMIT,

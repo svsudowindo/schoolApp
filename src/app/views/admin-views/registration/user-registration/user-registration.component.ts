@@ -1,11 +1,11 @@
-import { UserRegistrationService } from './user-registration.service';
+import { VALIDATION_PATTERNS } from './../../../../shared/constants/validation-patterns';
+import { BaseClass } from './../../../../shared/services/common/baseClass';
 import Utils from 'src/app/shared/services/common/utils';
-import { BaseClass } from './../../../shared/services/common/baseClass';
-import { VALIDATION_PATTERNS } from './../../../shared/constants/validation-patterns';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestEnums } from 'src/app/shared/constants/request-enums';
+import { RegistrationService } from '../registration.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -55,7 +55,7 @@ export class UserRegistrationComponent extends BaseClass implements OnInit {
   constructor(private _router: Router,
     public _injector: Injector,
     private _formBuilder: FormBuilder,
-    public _registrationService: UserRegistrationService) {
+    public _registrationService: RegistrationService) {
     super(_injector);
   }
 

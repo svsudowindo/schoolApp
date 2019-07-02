@@ -10,7 +10,8 @@ import Utils from 'src/app/shared/services/common/utils';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
-  resetForm = [
+  
+  forgetInfo = [
     {
       type: FORM_TYPES.TEXT,
       label: 'Email',
@@ -39,6 +40,52 @@ export class ResetPasswordComponent implements OnInit {
       label: 'Go back to login',
       id: 'back',
       hasDescription: true,
+      description: '',
+      navigationPath: '/login'
+    }
+  ];
+
+  
+  
+  resetForm = [
+    {
+      type: FORM_TYPES.PASSWORD,
+      label: 'New Password',
+      id: 'new_password',
+      required: true,
+      formControlName: 'password',
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
+      validatorMessages: ['Password is required']
+    },
+    {
+      type: FORM_TYPES.PASSWORD,
+      label: 'Confirm Password',
+      id: 'confirm_password',
+      required: true,
+      formControlName: 'confirm_password',
+      validators: [VALIDATION_PATTERNS.REQUIRED],
+      validatorsTypes: [VALIDATION_TYPES.REQUIRED],
+      validatorMessages: ['Confirm Password is required']
+    },
+    {
+      type: FORM_TYPES.SUBMIT,
+      label: 'Done',
+      id: 'done'
+    },
+    {
+      type: FORM_TYPES.LINK,
+      label: 'Register Here',
+      id: 'register',
+      hasDescription: true,
+      description: 'Dont have account yet ?',
+      navigationPath: '/registration'
+    },
+    {
+      type: FORM_TYPES.LINK,
+      label: 'Go back to login',
+      id: 'back',
+      hasDescription: false,
       description: '',
       navigationPath: '/login'
     }
