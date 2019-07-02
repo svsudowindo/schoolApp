@@ -1,29 +1,25 @@
+import { CommonRequestService } from './../../../shared/services/common-request.service';
+import { HttpHeaders } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/Rx';
-import { Subject } from 'rxjs/Subject';
+
 
 @Injectable()
 export class ForgotPasswordService {
+private basicAuthCookie;
 
-  constructor(public _fireAuth: AngularFireAuth) { }
+  constructor(private _cookieService: CookieService,
+    private _commonRequest:CommonRequestService) { }
 
-  forgotPassword(resetData): Observable<any> {
-    return this.fromfirebaseAuthPromise(this._fireAuth.auth.sendPasswordResetEmail(resetData.email));
+  forgetPassword(requestObject){
+    this.basicAuthCookie = this._cookieService.get('basicAuth');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Basic ' +  this.basicAuthCookie
+      })
+    };
+    return this._commonRequest.request(requestObject,null,null,httpOptions);
+ 
   }
-
-  fromfirebaseAuthPromise(promise): Observable<any> {
-    const subject = new Subject<any>();
-    promise.then(
-      res => {
-        subject.next(res);
-        subject.complete();
-      },
-      err => {
-        subject.error(err);
-        subject.complete();
-      });
-    return subject.asObservable();
-  }
-
+ 
 }

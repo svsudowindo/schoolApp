@@ -83,7 +83,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: CustomPreloaderService
+    preloadingStrategy: CustomPreloaderService,
+    useHash: true
   })],
   exports: [RouterModule]
 })

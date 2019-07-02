@@ -46,7 +46,7 @@ export class LoginComponent extends BaseClass implements OnInit {
       groupedInfo: {
         label: 'Forgot?', // pass material-icon name here if type is icon
         direction: GROUPED_INPUT_ENUM.RIGHT,
-        link: '/reset-password',
+        link: '/forgot-password',
         type: GROUPED_INPUT_ENUM.LINK
       }
     },
