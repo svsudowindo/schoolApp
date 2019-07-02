@@ -1,11 +1,11 @@
-import { UserRegistrationService } from './user-registration.service';
 import Utils from 'src/app/shared/services/common/utils';
-import { BaseClass } from './../../../shared/services/common/baseClass';
-import { VALIDATION_PATTERNS } from './../../../shared/constants/validation-patterns';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestEnums } from 'src/app/shared/constants/request-enums';
+import { BaseClass } from '../../../../shared/services/common/baseClass';
+import { UserRegistrationService } from '../../user-registration/user-registration.service';
+import { VALIDATION_PATTERNS } from '../../../../shared/constants/validation-patterns';
 
 @Component({
   selector: 'app-user-registration',
@@ -88,7 +88,7 @@ export class UserRegistrationComponent extends BaseClass implements OnInit {
       role: ['', Validators.compose([
         Validators.required
       ])],
-      createdBy:[localStorage.getItem('username')]
+      createdBy: [localStorage.getItem('username')]
     });
   }
 
@@ -100,8 +100,8 @@ export class UserRegistrationComponent extends BaseClass implements OnInit {
     if (this.registerationForm.valid) {
       this.showLoading();
       Utils.log('regidtrstion form  ::::: ' + JSON.stringify(this.registerationForm.value));
-console.log('aaaaaaaaaaa  :::::  ' + JSON.stringify(RequestEnums.REGISTER_USER));
-      this._registrationService.registerUser(RequestEnums.REGISTER_USER,this.registerationForm.value).subscribe((data) => {
+      console.log('aaaaaaaaaaa  :::::  ' + JSON.stringify(RequestEnums.REGISTER_USER));
+      this._registrationService.registerUser(RequestEnums.REGISTER_USER, this.registerationForm.value).subscribe((data) => {
         Utils.log('registration success   ::::: ' + JSON.stringify(data));
         this.hideLoading();
       }, (error) => {
