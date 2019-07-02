@@ -10,16 +10,6 @@ import { RequestEnums } from 'src/app/shared/constants/request-enums';
 
 const users: User[] = [];
 
-function search(text: string, pipe: PipeTransform) {
-  return users.filter(user => {
-    const term = text.toLowerCase();
-    return user.username.toLowerCase().includes(term)
-      || pipe.transform(user.updatedBy).includes(term)
-      || pipe.transform(user.firstName).includes(term)
-      || pipe.transform(user.emailAddress).includes(term);
-  });
-}
-
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -64,7 +54,6 @@ export class UserListComponent implements OnInit {
   }
 
   navigateToEditUser(user) {
-    console.log(user);
     this._router.navigate(['registration', 'edit', user.username]);
   }
 
