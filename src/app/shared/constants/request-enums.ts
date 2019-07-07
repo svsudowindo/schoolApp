@@ -58,6 +58,36 @@ export const RequestEnums = {
         path: '/questionbank/forgotPassword/:id',
         keys: ['id'],
         values: []
+    },
+    UPDATE_USER: {
+        type: 'PUT',
+        path: '/questionbank/auth/updateUser/:id',
+        keys: ['id'],
+        values: []
+    },
+    GET_COURSE_BY_ID: {
+        type: 'GET',
+        path: '/questionbank/auth/getCourseById/:id',
+        keys: ['id'],
+        values: []
+    },
+    DELETE_COURSE: {
+        type: 'DELETE',
+        path: '/questionbank/auth/deleteCourse/:id',
+        keys: ['id'],
+        values: []
+    },
+    DELETE_SUBJECT: {
+        type: 'DELETE',
+        path: '/questionbank/auth/deleteSubject/:id',
+        keys: ['id'],
+        values: []
+    },
+    UPDATE_SUBJECT: {
+        type: 'DELETE',
+        path: '/questionbank/auth/updateSubject/:id',
+        keys: ['id'],
+        values: []
     }
 };
 

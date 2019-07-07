@@ -4,3 +4,4 @@ export enum GROUPED_INPUT_ENUM {
     RIGHT = 'right',
     LEFT = 'left'
 }
+
