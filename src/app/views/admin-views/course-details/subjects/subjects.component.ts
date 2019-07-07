@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import  Utils  from 'src/app/shared/services/common/utils';
+import Utils from 'src/app/shared/services/common/utils';
 import { CLICK_STATUS, POPUP, DIALOG_TYPE } from './../../../../shared/constants/popup-enum';
 import { Component, OnInit, Input } from '@angular/core';
 import { CourseDetailsService } from '../course-details.service';
@@ -48,8 +48,8 @@ export class SubjectsComponent implements OnInit {
     });
   }
 
-  editSubject(subject){
-this._router.navigate(['add-subjects','edit',subject.yearID]);
+  editSubject(subject) {
+    this._router.navigate(['add-subjects', 'edit', subject.yearID]);
   }
 
 }

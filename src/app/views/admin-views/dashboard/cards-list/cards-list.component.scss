@@ -33,6 +33,10 @@
     color: #bd2b08c2;
 }
 
+.z-index {
+    z-index: 999;
+}
+
 @media (min-width: 768px) {
     .col-md-1 {
         // -ms-flex: 0 0 8.333333%;

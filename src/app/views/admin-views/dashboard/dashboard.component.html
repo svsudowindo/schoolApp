@@ -2,9 +2,14 @@
   <div class="card main-content">
     <div class="card-body threeD-pink-gradient">
       <div class="d-flex flex-wrap">
-        <img src="../../../../assets/icons/profile.jpg" class="rounded-circle">
+        <img src="assets/icons/profile.jpg" class="rounded-circle">
         <div class="w-550 m-l-40">
           <app-search (searchCourse)="searchCourse($event)"></app-search>
+        </div>
+        <div class="m-t-10 m-l-50">
+          <button type="button" class="btn pink-color-label" (click)="navigateToReset()">
+            <span class="fa fa-key p-r-10" aria-hidden="true"></span>Reset Password
+          </button>
         </div>
         <div class="m-t-10 m-l-50">
           <button type="button" class="btn pink-color-label" (click)="navigateToRegister()">
@@ -18,7 +23,7 @@
         </div>
         <div class="d-flex ml-auto">
           <p class="m-t-15 p-r-20 font-weight-500 font-size-16">Hi, SVsudowindo</p>
-          <img src="../../../../assets/icons/profile.jpg" class="rounded-circle">
+          <img src="assets/icons/profile.jpg" class="rounded-circle">
         </div>
       </div>
 

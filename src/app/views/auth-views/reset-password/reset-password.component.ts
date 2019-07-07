@@ -10,43 +10,6 @@ import Utils from 'src/app/shared/services/common/utils';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
-  
-  forgetInfo = [
-    {
-      type: FORM_TYPES.TEXT,
-      label: 'Email',
-      id: 'email',
-      required: true,
-      formControlName: 'email',
-      validators: [VALIDATION_PATTERNS.REQUIRED,  VALIDATION_PATTERNS.EMAIL],
-      validatorsTypes: [VALIDATION_TYPES.REQUIRED, VALIDATION_TYPES.PATTERN],
-      validatorMessages: ['Please enter the email', 'Please enter the valid email']
-    },
-    {
-      type: FORM_TYPES.SUBMIT,
-      label: 'Send',
-      id: 'send'
-    },
-    {
-      type: FORM_TYPES.LINK,
-      label: 'Register Here',
-      id: 'register',
-      hasDescription: true,
-      description: 'Dont have account yet ?',
-      navigationPath: '/registration'
-    },
-    {
-      type: FORM_TYPES.LINK,
-      label: 'Go back to login',
-      id: 'back',
-      hasDescription: true,
-      description: '',
-      navigationPath: '/login'
-    }
-  ];
-
-  
-  
   resetForm = [
     {
       type: FORM_TYPES.PASSWORD,
