@@ -29,4 +29,8 @@ export class DashboardComponent extends BaseClass implements OnInit {
   navigateToRegister() {
     this._router.navigate(['registration']);
   }
+
+  navigateToReset() {
+    this._router.navigate(['reset-password']);
+  }
 }
