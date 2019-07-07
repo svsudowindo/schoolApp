@@ -29,6 +29,8 @@ export class SubjectsConfigComponent extends BaseClass implements OnInit {
   };
   private courseId: any;
   private years: any;
+  public yearId;
+  private isEditMode: boolean = false;
   constructor(private _popupService: PopupService,
     private _router: Router,
     private _formBuilder: FormBuilder,
@@ -37,27 +39,54 @@ export class SubjectsConfigComponent extends BaseClass implements OnInit {
     private _subjectConfigService: SubjectConfigService) {
     super(_injector);
 
-    this.courseId = this._activatedRoute.snapshot.paramMap.get('id');
-  }
-
-  ngOnInit() {
-    this.createForm();
-    this.getYearsByCourseId();
-  }
-
-  createForm() {
-    this.subjectsForm = this._formBuilder.group({
-      subjects: this._formBuilder.array([this.createCourseFormGroup()])
+    // this.courseId = this._activatedRoute.snapshot.paramMap.get('id');
+    this._activatedRoute.params.subscribe(res => {
+      if (res.id) {
+        this.courseId = res.id;
+      }else if (res.mode) {
+        this.isEditMode = true;
+        this.yearId = res.mode;
+      }
     });
   }
 
+  ngOnInit() {
+    if(this.isEditMode){
+      this.createForm();
+    } else {
+      this.createForm();
+    this.getYearsByCourseId();
+    }
+  }
+
+  createForm() {
+    if(this.isEditMode){
+      this.subjectsForm = this._formBuilder.group({
+        subjects: this._formBuilder.array([this.createEditSubjectFormGroup()])
+      });
+    } else {
+      this.subjectsForm = this._formBuilder.group({
+        subjects: this._formBuilder.array([this.createSubjectFormGroup()])
+      });
+    }
+  }
+
   // adding course form group
-  createCourseFormGroup(): FormGroup {
+  createSubjectFormGroup(): FormGroup {
     return this._formBuilder.group({
       subjectName: ['', Validators.compose([Validators.required])],
       subjectCode: ['', Validators.compose([Validators.required])],
       yearID: [1, Validators.compose([Validators.required])],
       createdBy: [localStorage.getItem('username')]
+    });
+  }
+
+  createEditSubjectFormGroup(): FormGroup {
+    return this._formBuilder.group({
+      subjectName: ['', Validators.compose([Validators.required])],
+      subjectCode: ['', Validators.compose([Validators.required])],
+      yearID: [1, Validators.compose([Validators.required])],
+      updatedBy: [localStorage.getItem('username')]
     });
   }
 
@@ -69,7 +98,7 @@ export class SubjectsConfigComponent extends BaseClass implements OnInit {
   // adding new form group into an array
   addFormGroupToArray() {
     console.log(this.subjectsForm);
-    (<FormArray>this.subjectsForm.get('subjects')).push(this.createCourseFormGroup());
+    (<FormArray>this.subjectsForm.get('subjects')).push(this.createSubjectFormGroup());
   }
 
   // on clicking add Course button
@@ -136,6 +165,10 @@ export class SubjectsConfigComponent extends BaseClass implements OnInit {
     }, (error) => {
       Utils.log('years by id error  :::: ' + JSON.stringify(error));
     });
+  }
+
+  updateSubject(index){
+
   }
 
 }

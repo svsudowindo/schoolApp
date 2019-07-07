@@ -3,6 +3,10 @@
   <ng-container *ngFor="let subject of subjects">
     <div class="card subjects  m-t-25 " style="width: 19rem;">
       <div class="card-body">
+          <div class="d-flex justify-content-end">
+              <i class="fa fa-trash edit-icon p-r-5" aria-hidden="true" (click)="deleteSubject(subject)"></i>
+              <i class="fa fa-pencil-square-o edit-icon p-r-30" aria-hidden="true" (click)="editSubject(subject)"></i>
+            </div>
         <p class="card-title">{{subject.subjectName}}</p>
         <p class="card-text">{{subject.subjectCode}}</p>
         <div class="d-flex action-buttons justify-content-between">

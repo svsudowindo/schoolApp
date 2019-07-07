@@ -10,7 +10,7 @@
 </div>
 <form [formGroup]="courseForm">
   <div class="container">
-    <div align="right" class="m-b-10">
+    <div align="right" class="m-b-10" *ngIf="!isEditMode">
       <span placement="bottom" [ngbTooltip]="(courseForm.invalid) ? 'Please fill all the required course details to save' : 'Save all Courses'">
         <button type="button" class="btn pink-color-label m-r-10" (click)="saveAllCourses()" [disabled]="courseForm.invalid">
           <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save All Courses
@@ -72,9 +72,14 @@
               <!-- <button type="button" class="btn pink-color-label m-r-10">
                 <span class="fa fa-plus p-r-10" aria-hidden="true"></span>Add Subjects
               </button> -->
-              <span placement="bottom" [ngbTooltip]="courseForm.get('courses').controls[i].invalid ? 'Please fill all the required fields of course details ' + (i+1) + 'to save' : 'Save Course Details' + (i+1)">
+              <span *ngIf="!isEditMode" placement="bottom" [ngbTooltip]="courseForm.get('courses').controls[i].invalid ? 'Please fill all the required fields of course details ' + (i+1) + 'to save' : 'Save Course Details' + (i+1)">
                 <button type="button" class="btn pink-color-label" (click)="saveIndividualCourse(i)" [disabled]="courseForm.get('courses').controls[i].invalid">
                   <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save Course
+                </button>
+              </span>
+              <span placement="bottom" *ngIf="isEditMode" [ngbTooltip]="courseForm.get('courses').controls[i].invalid ? 'Please fill all the required fields of course details ' + (i+1) + 'to update' : 'update Course Details' + (i+1)">
+                <button type="button" class="btn pink-color-label" (click)="updateCourse(i)" [disabled]="courseForm.get('courses').controls[i].invalid">
+                  <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Update Course
                 </button>
               </span>
             </div>

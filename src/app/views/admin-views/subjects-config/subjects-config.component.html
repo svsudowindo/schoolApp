@@ -10,7 +10,7 @@
   </div>
   <form [formGroup]="subjectsForm">
     <div class="container">
-      <div align="right" class="m-b-10">
+      <div align="right" class="m-b-10" *ngIf="!isEditMode">
         <span placement="bottom" [ngbTooltip]="(subjectsForm.invalid) ? 'Please fill all the required subject details to save' : 'Save all Subjects'">
           <button type="button" class="btn pink-color-label m-r-10" (click)="saveAllSubjects()" [disabled]="subjectsForm.invalid">
             <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save All Subjects
@@ -72,11 +72,16 @@
                 <!-- <button type="button" class="btn pink-color-label m-r-10">
                   <span class="fa fa-plus p-r-10" aria-hidden="true"></span>Add Subjects
                 </button> -->
-                <span placement="bottom" [ngbTooltip]="subjectsForm.get('subjects').controls[i].invalid ? 'Please fill all the required fields of course details ' + (i+1) + 'to save' : 'Save Course Details' + (i+1)">
+                <span placement="bottom" *ngIf="isEditMode" [ngbTooltip]="subjectsForm.get('subjects').controls[i].invalid ? 'Please fill all the required fields of course details ' + (i+1) + 'to save' : 'Save Course Details' + (i+1)">
                   <button type="button" class="btn pink-color-label" (click)="saveIndividualSubject(i)" [disabled]="subjectsForm.get('subjects').controls[i].invalid">
-                    <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save Course
+                    <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save Subject
                   </button>
                 </span>
+                <span placement="bottom" *ngIf="!isEditMode" [ngbTooltip]="subjectsForm.get('subjects').controls[i].invalid ? 'Please fill all the required fields of subject details ' + (i+1) + 'to save' : 'Save subject Details' + (i+1)">
+                    <button type="button" class="btn pink-color-label" (click)="updateSubject(i)" [disabled]="subjectsForm.get('subjects').controls[i].invalid">
+                      <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Update Subject
+                    </button>
+                  </span>
               </div>
             </div>
           </div>
