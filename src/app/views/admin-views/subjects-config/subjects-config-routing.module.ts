@@ -14,6 +14,10 @@ const routes: Routes = [
       {
         path: ':id',
         component: SubjectsConfigComponent
+      },
+      {
+        path: 'edit/:mode',
+        component: SubjectsConfigComponent
       }
     ]
   }

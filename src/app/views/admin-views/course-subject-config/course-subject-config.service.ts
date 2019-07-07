@@ -25,4 +25,15 @@ export class CourseSubjectConfigService {
     return this._commonRequest.request(requestObject,courseData,null,httpOptions);
   }
 
+  getCourseById(requestObject) {
+    this.basicAuthCookie = this._cookieService.get('basicAuth');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Basic ' +  this.basicAuthCookie
+      })
+    };
+    return this._commonRequest.request(requestObject,null,null,httpOptions);
+  }
+
+  
 }

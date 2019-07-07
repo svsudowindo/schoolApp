@@ -2,7 +2,7 @@ import Utils from 'src/app/shared/services/common/utils';
 import { Component, OnInit, Injector } from '@angular/core';
 import { PopupService } from '../../../shared/components/componentsAsService/popup/popup.service';
 import { POPUP, DIALOG_TYPE, CLICK_STATUS, FROM_LOCATIONS } from '../../../shared/constants/popup-enum';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { BaseClass } from '../../../shared/services/common/baseClass';
 import { CourseSubjectConfigService } from './course-subject-config.service';
@@ -15,6 +15,8 @@ import { RequestEnums } from 'src/app/shared/constants/request-enums';
 })
 export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
   courseForm: FormGroup;
+  private isEditMode:boolean = false;
+  private courseId;
   yearsArr = [
     {
       yearId: 1,
@@ -51,17 +53,32 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
     private _router: Router,
     private _formBuilder: FormBuilder,
     public _injector: Injector,
-    private _courseService: CourseSubjectConfigService) {
+    private _courseService: CourseSubjectConfigService,
+    private _activatedRoute: ActivatedRoute) {
     super(_injector);
+    this._activatedRoute.params.subscribe(res => {
+      if (res.id) {
+        this.isEditMode = true;
+        this.courseId = res.id;
+      }
+    });
   }
 
   ngOnInit() {
     this.createForm();
+    this.getCourseById();
   }
+
   createForm() {
+   if(this.isEditMode){
+    this.courseForm = this._formBuilder.group({
+      courses: this._formBuilder.array([this.createEditCourseFormGroup()])
+    });
+   } else {
     this.courseForm = this._formBuilder.group({
       courses: this._formBuilder.array([this.createCourseFormGroup()])
     });
+   }
   }
 
   // adding course form group
@@ -75,15 +92,27 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
     });
   }
 
+  createEditCourseFormGroup(): FormGroup {
+    return this._formBuilder.group({
+      courseName: ['', Validators.compose([Validators.required])],
+      courseCode: ['', Validators.compose([Validators.required])],
+      courseDescription: ['', Validators.compose([Validators.required])],
+      noOfYears: [1, Validators.compose([Validators.required])],
+      updatedBy: [localStorage.getItem('username')]
+    });
+  }
+
   // remove course from formgroup
   removeFormGroupFromArray(index: number) {
     (<FormArray>this.courseForm.get('courses')).removeAt(index);
   }
+
   // adding new form group into an array
   addFormGroupToArray() {
     console.log(this.courseForm);
     (<FormArray>this.courseForm.get('courses')).push(this.createCourseFormGroup());
   }
+
   // on clicking add Course button
   addAnotherCourse() {
     this.addFormGroupToArray();
@@ -128,6 +157,7 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
       this.hideLoading();
     });
   }
+
   // saving individual course
   saveIndividualCourse(index) {
     this.showLoading();
@@ -161,5 +191,23 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
   navigateToDashboard() {
     this._router.navigate(['dashboard']);
   }
+
+  updateCourse(i){
+    console.log('update course   :::::: ' + JSON.stringify(this.courseForm.get('courses').value[i]));
+  }
+
+  getCourseById(){
+    RequestEnums.GET_COURSE_BY_ID.values.push(this.courseId);
+    this._courseService.getCourseById(RequestEnums.GET_COURSE_BY_ID).subscribe((data)=>{
+      RequestEnums.GET_COURSE_BY_ID.values = [];
+      (<FormArray>this.courseForm.get('courses')).controls[0].patchValue(data);
+    
+      console.log('this.courseForm.get' , this.courseForm.get('courses'));
+      Utils.log('success response for course by id  :::: ' + JSON.stringify(data));
+    },(error)=>{
+      Utils.log('error response for course by id  :::: ' + JSON.stringify(error));
+    });
+  }
+
 
 }

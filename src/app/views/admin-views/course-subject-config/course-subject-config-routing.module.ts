@@ -9,6 +9,10 @@ const routes: Routes = [
       {
         path: '',
         component: CourseSubjectConfigComponent
+      },
+      {
+        path: 'edit/:id',
+        component: CourseSubjectConfigComponent
       }
     ]
   }

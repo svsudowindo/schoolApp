@@ -23,6 +23,7 @@ export class RegistrationService {
     };
     return this._commonRequest.request(requestObject, userObject, null, httpOptions);
   }
+  
   getAllUsers(requestObject) {
     this.basicAuthCookie = this._cookieService.get('basicAuth');
     const httpOptions = {

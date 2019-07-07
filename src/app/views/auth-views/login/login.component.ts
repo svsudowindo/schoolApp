@@ -78,6 +78,7 @@ export class LoginComponent extends BaseClass implements OnInit {
 
   submit(loginData) {
     this.showLoading();
+    Utils.log('login request   :::::: ' + JSON.stringify(loginData));
     this._loginService.login(RequestEnums.LOGIN, loginData).subscribe((loginResponse) => {
       let userName = loginResponse.firstName + ' ' + loginResponse.lastName;
       localStorage.setItem('username', userName);
