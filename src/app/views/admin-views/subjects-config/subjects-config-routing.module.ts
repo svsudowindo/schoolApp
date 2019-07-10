@@ -16,7 +16,7 @@ const routes: Routes = [
         component: SubjectsConfigComponent
       },
       {
-        path: 'edit/:mode',
+        path: 'edit/:id/:subjectId/:yearId',
         component: SubjectsConfigComponent
       }
     ]

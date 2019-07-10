@@ -84,8 +84,14 @@ export const RequestEnums = {
         values: []
     },
     UPDATE_SUBJECT: {
-        type: 'DELETE',
+        type: 'PUT',
         path: '/questionbank/auth/updateSubject/:id',
+        keys: ['id'],
+        values: []
+    },
+    UPDATE_COURSE: {
+        type: 'PUT',
+        path: '/questionbank/auth/updateCourse/:id',
         keys: ['id'],
         values: []
     }

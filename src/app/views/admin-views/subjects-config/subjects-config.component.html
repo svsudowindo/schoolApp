@@ -72,12 +72,12 @@
                 <!-- <button type="button" class="btn pink-color-label m-r-10">
                   <span class="fa fa-plus p-r-10" aria-hidden="true"></span>Add Subjects
                 </button> -->
-                <span placement="bottom" *ngIf="isEditMode" [ngbTooltip]="subjectsForm.get('subjects').controls[i].invalid ? 'Please fill all the required fields of course details ' + (i+1) + 'to save' : 'Save Course Details' + (i+1)">
+                <span placement="bottom" *ngIf="!isEditMode" [ngbTooltip]="subjectsForm.get('subjects').controls[i].invalid ? 'Please fill all the required fields of course details ' + (i+1) + 'to save' : 'Save Course Details' + (i+1)">
                   <button type="button" class="btn pink-color-label" (click)="saveIndividualSubject(i)" [disabled]="subjectsForm.get('subjects').controls[i].invalid">
                     <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Save Subject
                   </button>
                 </span>
-                <span placement="bottom" *ngIf="!isEditMode" [ngbTooltip]="subjectsForm.get('subjects').controls[i].invalid ? 'Please fill all the required fields of subject details ' + (i+1) + 'to save' : 'Save subject Details' + (i+1)">
+                <span placement="bottom" *ngIf="isEditMode" [ngbTooltip]="subjectsForm.get('subjects').controls[i].invalid ? 'Please fill all the required fields of subject details ' + (i+1) + 'to save' : 'Save subject Details' + (i+1)">
                     <button type="button" class="btn pink-color-label" (click)="updateSubject(i)" [disabled]="subjectsForm.get('subjects').controls[i].invalid">
                       <span class="fa fa-floppy-o p-r-10" aria-hidden="true"></span>Update Subject
                     </button>

@@ -26,7 +26,7 @@ export class UserRegistrationComponent extends BaseClass implements OnInit {
     }
   ];
   isEditMode = false;
-  courseId: any;
+  userId: any;
   public validation_messages = {
     'firstName': [
       { type: 'required', message: 'Please enter firstname' }
@@ -64,7 +64,7 @@ export class UserRegistrationComponent extends BaseClass implements OnInit {
     this._activatedRoute.params.subscribe(res => {
       if (res.id) {
         this.isEditMode = true;
-        this.courseId = res.id;
+        this.userId = res.id;
       }
     });
   }
@@ -80,7 +80,7 @@ export class UserRegistrationComponent extends BaseClass implements OnInit {
 
   getCourseDetails() {
     this.showLoading();
-    RequestEnums.GET_USER_BY_ID.values = [this.courseId];
+    RequestEnums.GET_USER_BY_ID.values = [this.userId];
     this._registrationService.getUserById(RequestEnums.GET_USER_BY_ID).subscribe(res => {
       console.log(res);
       this.registerationForm.patchValue(res);
@@ -158,13 +158,14 @@ export class UserRegistrationComponent extends BaseClass implements OnInit {
       this.showLoading();
       let requestObject; 
       if(this.isEditMode){
-        RequestEnums.UPDATE_USER.values.push(this.registerationForm.value.username);
+        RequestEnums.UPDATE_USER.values.push(this.userId);
         requestObject  = RequestEnums.UPDATE_USER;
       } else {
         requestObject  = RequestEnums.REGISTER_USER;
       }
       this._registrationService.registerUser(requestObject, this.registerationForm.value).subscribe((data) => {
         Utils.log('registration success   ::::: ' + JSON.stringify(data));
+        RequestEnums.UPDATE_USER.values =[];
         this.hideLoading();
       }, (error) => {
         this.hideLoading();

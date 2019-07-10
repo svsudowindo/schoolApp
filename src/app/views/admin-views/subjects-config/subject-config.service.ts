@@ -35,4 +35,14 @@ export class SubjectConfigService {
     return this._commonRequest.request(requestObject,subjects,null,httpOptions);
   }
 
+  updateSubject(requestObject,subjects) {
+    this.basicAuthCookie = this._cookieService.get('basicAuth');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Basic ' +  this.basicAuthCookie
+      })
+    };
+    return this._commonRequest.request(requestObject,subjects,null,httpOptions);
+  }
+
 }

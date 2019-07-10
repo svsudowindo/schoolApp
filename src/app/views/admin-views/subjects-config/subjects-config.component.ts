@@ -31,6 +31,7 @@ export class SubjectsConfigComponent extends BaseClass implements OnInit {
   private years: any;
   public yearId;
   private isEditMode: boolean = false;
+  public subjectId;
   constructor(private _popupService: PopupService,
     private _router: Router,
     private _formBuilder: FormBuilder,
@@ -43,9 +44,11 @@ export class SubjectsConfigComponent extends BaseClass implements OnInit {
     this._activatedRoute.params.subscribe(res => {
       if (res.id) {
         this.courseId = res.id;
-      }else if (res.mode) {
+      } 
+      if (res.yearId) {
         this.isEditMode = true;
-        this.yearId = res.mode;
+        this.yearId = res.yearId;
+        this.subjectId = res.subjectId;
       }
     });
   }
@@ -55,8 +58,8 @@ export class SubjectsConfigComponent extends BaseClass implements OnInit {
       this.createForm();
     } else {
       this.createForm();
-    this.getYearsByCourseId();
     }
+    this.getYearsByCourseId();
   }
 
   createForm() {
@@ -167,7 +170,7 @@ export class SubjectsConfigComponent extends BaseClass implements OnInit {
     });
   }
 
-  updateSubject(index){
+  updateSubject(index) {
 
   }
 

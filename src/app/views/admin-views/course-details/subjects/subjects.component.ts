@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import  Utils  from 'src/app/shared/services/common/utils';
 import { CLICK_STATUS, POPUP, DIALOG_TYPE } from './../../../../shared/constants/popup-enum';
 import { Component, OnInit, Input } from '@angular/core';
@@ -15,9 +15,13 @@ export class SubjectsComponent implements OnInit {
 
   @Input()
   subjects: any;
+  public courseId;
   constructor(private _courseDetailsService: CourseDetailsService,
     private _popupService: PopupService,
-    private _router: Router) { }
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute) {
+      this.courseId = this._activatedRoute.snapshot.paramMap.get('id');
+     }
 
   ngOnInit() {
   }
@@ -49,7 +53,7 @@ export class SubjectsComponent implements OnInit {
   }
 
   editSubject(subject){
-this._router.navigate(['add-subjects','edit',subject.yearID]);
+this._router.navigate(['add-subjects','edit',this.courseId,subject.subjectID,subject.yearID]);
   }
 
 }

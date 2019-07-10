@@ -15,7 +15,7 @@ import { RequestEnums } from 'src/app/shared/constants/request-enums';
 })
 export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
   courseForm: FormGroup;
-  private isEditMode:boolean = false;
+  private isEditMode: boolean = false;
   private courseId;
   yearsArr = [
     {
@@ -70,15 +70,15 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
   }
 
   createForm() {
-   if(this.isEditMode){
-    this.courseForm = this._formBuilder.group({
-      courses: this._formBuilder.array([this.createEditCourseFormGroup()])
-    });
-   } else {
-    this.courseForm = this._formBuilder.group({
-      courses: this._formBuilder.array([this.createCourseFormGroup()])
-    });
-   }
+    if (this.isEditMode) {
+      this.courseForm = this._formBuilder.group({
+        courses: this._formBuilder.array([this.createEditCourseFormGroup()])
+      });
+    } else {
+      this.courseForm = this._formBuilder.group({
+        courses: this._formBuilder.array([this.createCourseFormGroup()])
+      });
+    }
   }
 
   // adding course form group
@@ -192,19 +192,24 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
     this._router.navigate(['dashboard']);
   }
 
-  updateCourse(i){
+  updateCourse(i) {
     console.log('update course   :::::: ' + JSON.stringify(this.courseForm.get('courses').value[i]));
+    this._courseService.updateCourse(RequestEnums.UPDATE_COURSE, this.courseForm.get('courses').value[i]).subscribe((data) => {
+      Utils.log('update course success  ::::::  ' + JSON.stringify(data));
+    }, (error) => {
+      Utils.log('update course error  ::::::  ' + JSON.stringify(error));
+    });
   }
 
-  getCourseById(){
+  getCourseById() {
     RequestEnums.GET_COURSE_BY_ID.values.push(this.courseId);
-    this._courseService.getCourseById(RequestEnums.GET_COURSE_BY_ID).subscribe((data)=>{
+    this._courseService.getCourseById(RequestEnums.GET_COURSE_BY_ID).subscribe((data) => {
       RequestEnums.GET_COURSE_BY_ID.values = [];
       (<FormArray>this.courseForm.get('courses')).controls[0].patchValue(data);
-    
-      console.log('this.courseForm.get' , this.courseForm.get('courses'));
+
+      console.log('this.courseForm.get', this.courseForm.get('courses'));
       Utils.log('success response for course by id  :::: ' + JSON.stringify(data));
-    },(error)=>{
+    }, (error) => {
       Utils.log('error response for course by id  :::: ' + JSON.stringify(error));
     });
   }
