@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ForgotPasswordComponent } from './forgot-password.component';
-// import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
+import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 
 
 const routes: Routes = [
@@ -11,11 +11,11 @@ const routes: Routes = [
       {
         path: '',
         component: ForgotPasswordComponent
-       }
-      // {
-      //   path: 'otp-verifivation',
-      //   component: OtpVerificationComponent
-      // }
+      },
+      {
+        path: 'otp-verification',
+        component: OtpVerificationComponent
+      }
     ]
   }
 ];

@@ -3,6 +3,7 @@ import { ForgotPasswordService } from './forgot-password.service';
 import { Component, OnInit } from '@angular/core';
 import { FORM_TYPES, VALIDATION_PATTERNS, VALIDATION_TYPES } from '../../../shared/constants/validation-patterns';
 import Utils from 'src/app/shared/services/common/utils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,7 +12,7 @@ import Utils from 'src/app/shared/services/common/utils';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  
+
   forgetInfo = [
     {
       type: FORM_TYPES.TEXT,
@@ -19,7 +20,7 @@ export class ForgotPasswordComponent implements OnInit {
       id: 'email',
       required: true,
       formControlName: 'email',
-      validators: [VALIDATION_PATTERNS.REQUIRED,  VALIDATION_PATTERNS.EMAIL],
+      validators: [VALIDATION_PATTERNS.REQUIRED, VALIDATION_PATTERNS.EMAIL],
       validatorsTypes: [VALIDATION_TYPES.REQUIRED, VALIDATION_TYPES.PATTERN],
       validatorMessages: ['Please enter the email', 'Please enter the valid email']
     },
@@ -46,7 +47,8 @@ export class ForgotPasswordComponent implements OnInit {
     }
   ];
 
-  constructor(private _forgetPasswordService: ForgotPasswordService) { }
+  constructor(private _forgetPasswordService: ForgotPasswordService,
+    private _router: Router) { }
 
   ngOnInit() {
   }
@@ -54,12 +56,14 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPassword(formData) {
 
     Utils.log('forget password form  :::::: ' + JSON.stringify(formData));
-RequestEnums.FORGET_PASSWORD.values.push(formData.email);
-    this._forgetPasswordService.forgetPassword(RequestEnums.FORGET_PASSWORD).subscribe((data)=>{
+    RequestEnums.FORGET_PASSWORD.values.push(formData.email);
+    this._forgetPasswordService.forgetPassword(RequestEnums.FORGET_PASSWORD).subscribe((data) => {
       Utils.log('forget password success   :::: ' + JSON.stringify(data));
-      RequestEnums.FORGET_PASSWORD.values =[];
-    },(error)=>{
-      Utils.log('forget password success   :::: ' + JSON.stringify(error));
+      RequestEnums.FORGET_PASSWORD.values = [];
+      this._router.navigate(['forgot-password', 'otp-verification'],{queryParams:{'email':data.email}});
+    }, (error) => {
+      Utils.log('forget password error   :::: ' + JSON.stringify(error));
+      this._router.navigate(['forgot-password', 'otp-verification'],{queryParams:{email:formData.email}});
     });
   }
 

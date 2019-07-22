@@ -1,3 +1,4 @@
+import { DIALOG_TYPE, POPUP, CLICK_STATUS } from './../../../../shared/constants/popup-enum';
 import Utils from 'src/app/shared/services/common/utils';
 import { Component, OnInit, PipeTransform } from '@angular/core';
 import { Router } from '@angular/router';
@@ -7,6 +8,7 @@ import { ITEMS_PER_PAGE } from '../user-enums';
 import { CustomSearchService } from '../../../../shared/services/common/customSearch/custom-search.service';
 import { RegistrationService } from './../registration.service';
 import { RequestEnums } from 'src/app/shared/constants/request-enums';
+import { PopupService } from 'src/app/shared/components/componentsAsService/popup/popup.service';
 
 const users: User[] = [];
 
@@ -26,7 +28,8 @@ export class UserListComponent implements OnInit {
   searchKey = '';
   constructor(private _router: Router,
     private _customSearchService: CustomSearchService,
-    private _registrationService: RegistrationService) {
+    private _registrationService: RegistrationService,
+    private _popupService: PopupService) {
     this.users = users;
     this.searchData = users;
   }
@@ -65,5 +68,30 @@ export class UserListComponent implements OnInit {
     }, (error) => {
       Utils.log('get All user error  :::: ' + JSON.stringify(error));
     });
+  }
+
+  deleteUser(event,user){
+    event.stopPropagation();
+    RequestEnums.DELETE_USER.values.push(user.userId);
+    this._popupService.openModal({
+      dialog_type: DIALOG_TYPE.CONFIMATION_DIALOG,
+      type: POPUP.ERROR,
+      title: 'Delete User',
+      message: 'Please confirm to delete the User',
+      okButtonLabel: 'Delete',
+      cancelButtonLabel: 'Cancel'
+    }).then(res => {
+      if (res === CLICK_STATUS.SUBMIT_BUTTON) {
+       this._registrationService.DeleteUserById(RequestEnums.DELETE_USER).subscribe((data)=>{
+        RequestEnums.DELETE_USER.values = []; 
+        this.getAllUsers();
+        Utils.log('delete user success   ::::: ' + JSON.stringify(data));
+       },(error)=>{
+        Utils.log('delete user error   ::::: ' + JSON.stringify(error));
+       });
+       
+      }
+    });
+
   }
 }

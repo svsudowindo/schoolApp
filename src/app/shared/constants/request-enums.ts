@@ -94,6 +94,30 @@ export const RequestEnums = {
         path: '/questionbank/auth/updateCourse/:id',
         keys: ['id'],
         values: []
+    },
+    DELETE_USER: {
+        type: 'DELETE',
+        path: '/questionbank/auth/deleteUser/:id',
+        keys: ['id'],
+        values: []
+    },
+    OTP_VERIFICATION: {
+        type: 'GET',
+        path: '/questionbank/validateOTP/:emailid/:otp',
+        keys: ['emailid','otp'],
+        values: []
+    },
+    RESET_PASSWORD: {
+        type: 'GET',
+        path: '/questionbank/resetPassword/:emailid/:password',
+        keys: ['emailid','password'],
+        values: []
+    },
+    GET_SUBJECT_BY_SUBJECTID:{
+        type: 'GET',
+        path: '/questionbank/auth/getSubjectById/:id',
+        keys: ['id'],
+        values: []
     }
 };
 

@@ -44,7 +44,7 @@ export class SubjectsConfigComponent extends BaseClass implements OnInit {
     this._activatedRoute.params.subscribe(res => {
       if (res.id) {
         this.courseId = res.id;
-      } 
+      }
       if (res.yearId) {
         this.isEditMode = true;
         this.yearId = res.yearId;
@@ -54,16 +54,17 @@ export class SubjectsConfigComponent extends BaseClass implements OnInit {
   }
 
   ngOnInit() {
-    if(this.isEditMode){
+    if (this.isEditMode) {
       this.createForm();
     } else {
       this.createForm();
     }
     this.getYearsByCourseId();
+    this.getSubjectById();
   }
 
   createForm() {
-    if(this.isEditMode){
+    if (this.isEditMode) {
       this.subjectsForm = this._formBuilder.group({
         subjects: this._formBuilder.array([this.createEditSubjectFormGroup()])
       });
@@ -171,7 +172,26 @@ export class SubjectsConfigComponent extends BaseClass implements OnInit {
   }
 
   updateSubject(index) {
+RequestEnums.UPDATE_SUBJECT.values.push(this.subjectId);
+    console.log('update course  ::::::  ' + JSON.stringify(this.subjectsForm.get('subjects').value[index]));
+this._subjectConfigService.updateSubject(RequestEnums.UPDATE_SUBJECT,this.subjectsForm.get('subjects').value[index]).subscribe((data)=>{
+Utils.log('update subject success   :::::: ' + JSON.stringify(data));
+RequestEnums.UPDATE_SUBJECT.values =[];
 
+},(error)=>{
+  Utils.log('update subject error   :::::: ' + JSON.stringify(error));
+});
   }
 
+  getSubjectById() {
+    RequestEnums.GET_SUBJECT_BY_SUBJECTID.values.push(this.subjectId);
+    this._subjectConfigService.getSubjectBySubjectId(RequestEnums.GET_SUBJECT_BY_SUBJECTID).subscribe((data) => {
+      Utils.log('get subject by id success :::: ' + JSON.stringify(data));
+      RequestEnums.GET_SUBJECT_BY_SUBJECTID.values = [];
+    //  this.subjectsForm.patchValue(data);
+      (<FormArray>this.subjectsForm.get('subjects')).controls[0].patchValue(data);
+    }, (error) => {
+      Utils.log('get subject by id error :::: ' + JSON.stringify(error));
+    });
+  }
 }

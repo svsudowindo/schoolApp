@@ -67,6 +67,7 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
   ngOnInit() {
     this.createForm();
     this.getCourseById();
+    
   }
 
   createForm() {
@@ -205,8 +206,9 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
     RequestEnums.GET_COURSE_BY_ID.values.push(this.courseId);
     this._courseService.getCourseById(RequestEnums.GET_COURSE_BY_ID).subscribe((data) => {
       RequestEnums.GET_COURSE_BY_ID.values = [];
-      (<FormArray>this.courseForm.get('courses')).controls[0].patchValue(data);
-
+      if(this.isEditMode){
+        this.getYearByCourseId(data);
+      }
       console.log('this.courseForm.get', this.courseForm.get('courses'));
       Utils.log('success response for course by id  :::: ' + JSON.stringify(data));
     }, (error) => {
@@ -214,5 +216,17 @@ export class CourseSubjectConfigComponent extends BaseClass implements OnInit {
     });
   }
 
+  getYearByCourseId(data1) {
+    RequestEnums.GET_YEAR_BY_COURSEID.values.push(this.courseId);
+    this._courseService.getYearsByCourseId(RequestEnums.GET_YEAR_BY_COURSEID).subscribe((data) => {
+      console.log('get years by course id success   :::::: ' + JSON.stringify(data));
+      (<FormArray>this.courseForm.get('courses')).controls[0].patchValue(data1);
+      (<FormArray>this.courseForm.get('courses')).controls[0].get('noOfYears').setValue(data.length);
+      
+      RequestEnums.GET_YEAR_BY_COURSEID.values =[];
+    }, (error) => {
+      Utils.log('get years by course id error   :::::: ' + JSON.stringify(error));
+    });
+  }
 
 }

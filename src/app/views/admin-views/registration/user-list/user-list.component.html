@@ -38,6 +38,7 @@
         <th scope="col">Role</th>
         <th scope="col">Updated By</th>
         <th scope="col">Updated On</th>
+        <th scope="col">Delete User</th>
       </tr>
     </thead>
     <tbody>
@@ -67,6 +68,9 @@
             </td>
             <td>
               <ngb-highlight [result]="user.updatedDate"></ngb-highlight>
+            </td>
+            <td>
+                <i class="fa fa-trash edit-icon p-r-5 z-index" aria-hidden="true" (click)="deleteUser($event,user)"></i>
             </td>
           </tr>
         </ng-container>

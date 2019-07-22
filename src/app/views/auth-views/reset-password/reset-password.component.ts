@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FORM_TYPES, VALIDATION_PATTERNS, VALIDATION_TYPES } from '../../../shared/constants/validation-patterns';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ResetPasswordService } from './reset-password.service';
 import Utils from 'src/app/shared/services/common/utils';
+import { RequestEnums } from 'src/app/shared/constants/request-enums';
 
 @Component({
   selector: 'app-reset-password',
@@ -10,6 +11,8 @@ import Utils from 'src/app/shared/services/common/utils';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
+
+  public emailId:string='';
   resetForm = [
     {
       type: FORM_TYPES.PASSWORD,
@@ -54,9 +57,12 @@ export class ResetPasswordComponent implements OnInit {
     }
   ];
   constructor(private _router: Router,
+    private activateRoute:ActivatedRoute,
     private _resetService: ResetPasswordService) { }
 
   ngOnInit() {
+Utils.log('Vinnnu -- '+JSON.stringify(this.activateRoute.snapshot.queryParamMap.get('email'))) ;
+    this.emailId = this.activateRoute.snapshot.queryParamMap.get('email');
   }
 
   reset(resetData) {
@@ -67,6 +73,20 @@ export class ResetPasswordComponent implements OnInit {
      // this._router.navigate(['forgot-password']);
     }, (error) => {
       Utils.log('reset password error response   ::: ' + JSON.stringify(error));
+    });
+  }
+
+  doResetPassword(formData){
+    Utils.log('forget password form  :::::: ' + JSON.stringify(formData));
+    RequestEnums.RESET_PASSWORD.values.push(this.emailId);
+    RequestEnums.RESET_PASSWORD.values.push(formData.password);
+    this._resetService.doResetPassword(RequestEnums.RESET_PASSWORD).subscribe((data) => {
+      Utils.log('forget password success   :::: ' + JSON.stringify(data));
+      RequestEnums.RESET_PASSWORD.values = [];
+      this._router.navigate(['login']);
+    }, (error) => {
+      Utils.log('forget password error   :::: ' + JSON.stringify(error));
+      this._router.navigate(['login']);
     });
   }
 
